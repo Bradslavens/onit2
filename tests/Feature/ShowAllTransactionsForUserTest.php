@@ -21,4 +21,14 @@ class ShowAllTransactionsForUserTest extends TestCase
 
         $response->assertSee('Transaction List');
     }
+
+    public function testDashboardRequiresLogin()
+    {
+        // go to dashboard without a user
+        $response = $this->get('dashboard');
+
+        // confirm going to login page
+        $response->assertSee('ogin');
+
+    }
 }

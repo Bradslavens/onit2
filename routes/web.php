@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 // dashboard routes
-Route::get('/dashboard', 'DashboardController@index');
+Route::get('/dashboard', 'TransactionController@index');
+
