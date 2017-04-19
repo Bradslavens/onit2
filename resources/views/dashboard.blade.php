@@ -8,7 +8,7 @@
             <ul class="list-group">
             @foreach($transactions as $transaction)
               <li class="list-group-item">
-                <span class="badge">{{$transaction->statu}}</span>
+                <span class="badge">{{$transaction->status}}</span>
                 {{$transaction->name}}
               </li>
             @endforeach
