@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
 
@@ -20,7 +21,11 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        $user = Auth::user();
+
+        $transactions =  \App\Transaction::get();
+
+        return view('dashboard', ['transactions' => $transactions] );
     }
 
     /**
