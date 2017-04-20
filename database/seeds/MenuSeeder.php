@@ -18,18 +18,30 @@ class MenuSeeder extends Seeder
                 'user_id' => 1,
             ]);
 
-        DB::Table('items')->insert(
+        DB::Table('items')->insert([
             [
-                'name' => 'buyer',
+                'name' => 'Buyer',
                 'id' => 1,
-                'user_id' => 1
+                'user_id' => 1,
+            ],
+            [
+                'name' => 'Seller',
+                'id' => 2,
+                'user_id' => 1,
+            ],
             ]);
 
-        DB::Table('item_menu')->insert(
+        DB::Table('item_menu')->insert([
             [
                 'menu_id' => 1,
                 'item_id' => 1,
                 'user_id' => 1,
+            ],
+            [
+                'menu_id' => 1,
+                'item_id' => 2,
+                'user_id' => 1,
+            ],
             ]);
     }
 }
