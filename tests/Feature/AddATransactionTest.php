@@ -11,9 +11,12 @@ class AddATransactionTest extends TestCase
 {
     use DatabaseMigrations;
     
+    
     public function testTranactionShowAddForm()
     {
         $user = factory(\App\User::class)->make(['id' => 1]);
+
+        $this->artisan("db:seed");
 
         $response = $this->actingAs($user)
               ->get('/start');

@@ -36,8 +36,12 @@ class TransactionController extends Controller
      */
     public function create()
     {
+        $user_id = Auth::id();
+
         // get the sides id
-        $menu = Menu::where('name', 'transactionSide')->first();
+        $menu = Menu::where('name', 'transactionSide')
+                    ->where('user_id', $user_id)
+                    ->first();
 
         return view('transaction.start', ['menu' => $menu]);
     }
