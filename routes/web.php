@@ -22,3 +22,9 @@ Route::get('/home', 'HomeController@index');
 // dashboard routes
 Route::get('/dashboard', 'TransactionController@index');
 
+
+// start transaction routes
+Route::get('/start', 'TransactionController@create');
+
+// Add admin/list items
+Route::get('/admin/listTypes', 'ListController@create');

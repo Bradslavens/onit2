@@ -30,3 +30,11 @@ $factory->define(App\Transaction::class, function (Faker\Generator $faker) {
         'status' => 1,
     ];
 });
+
+
+$factory->define(App\Ilist::class, function (Faker\Generator $faker) {
+    
+    return [
+        'name' => $faker->name,
+    ];
+});
