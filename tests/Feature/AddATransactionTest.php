@@ -18,6 +18,6 @@ class AddATransactionTest extends TestCase
         $response = $this->actingAs($user)
               ->get('/start');
 
-        $response->assertSee('Start A Transaction');
+        $response->assertSee('Start a Transaction');
     }
 }
