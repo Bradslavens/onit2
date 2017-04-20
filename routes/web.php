@@ -26,5 +26,5 @@ Route::get('/dashboard', 'TransactionController@index');
 // start transaction routes
 Route::get('/start', 'TransactionController@create');
 
-// Add admin/list items
-Route::get('/admin/listTypes', 'ListController@create');
+// Admin 
+Route::get('/admin/menus', 'MenuController@index');
