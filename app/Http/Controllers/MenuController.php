@@ -4,14 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ListController extends Controller
+class MenuController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +13,7 @@ class ListController extends Controller
      */
     public function index()
     {
-        $
+        //
     }
 
     /**
@@ -29,7 +23,7 @@ class ListController extends Controller
      */
     public function create()
     {
-        return view('admin/list');
+        //
     }
 
     /**

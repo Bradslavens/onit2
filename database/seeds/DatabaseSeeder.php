@@ -13,6 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(TransactionSeeder::class);
-        $this->call(I_listSeeder::class);
+        $this->call(MenuSeeder::class);
     }
 }

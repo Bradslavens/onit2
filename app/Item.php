@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    return $this->belongsToMany('App\IList');
+    public function menus()
+    {
+        return $this->belongsToMany('App\Menu');
+    }
 }

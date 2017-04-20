@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class IListItems extends Migration
+class ItemMenu extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class IListItems extends Migration
      */
     public function up()
     {
-        Schema::create('i_list_items', function (Blueprint $table) {
+        Schema::create('item_menu', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('item_id')->unsigned();
-            $table->integer('i_list_id')->unsigned;
+            $table->integer('menu_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class IListItems extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('i_list_items');
+        Schema::dropIfExists('item_menu');
     }
 }

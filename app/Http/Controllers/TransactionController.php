@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Http\Request;    
 use Illuminate\Support\Facades\Auth;
-use App\IList;
+use App\Menu;
 
 class TransactionController extends Controller
 {
@@ -37,11 +37,9 @@ class TransactionController extends Controller
     public function create()
     {
         // get the sides id
-        $transactionSide = IList::where('name', 'transactionSide')->get();
+        $menu = Menu::where('name', 'transactionSide')->first();
 
-        // $transactionSides = where('type', 'transactionSides')->get();
-
-        return view('transaction.start', ['transactionSides' => $transactionSides]);
+        return view('transaction.start', ['menu' => $menu]);
     }
 
     /**

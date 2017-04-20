@@ -9,11 +9,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AddATransactionTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
+    use DatabaseMigrations;
+    
     public function testTranactionShowAddForm()
     {
         $user = factory(\App\User::class)->make(['id' => 1]);

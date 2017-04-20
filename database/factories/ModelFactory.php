@@ -32,7 +32,7 @@ $factory->define(App\Transaction::class, function (Faker\Generator $faker) {
 });
 
 
-$factory->define(App\Ilist::class, function (Faker\Generator $faker) {
+$factory->define(App\Menu::class, function (Faker\Generator $faker) {
     
     return [
         'name' => $faker->name,

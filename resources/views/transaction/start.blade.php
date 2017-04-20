@@ -16,7 +16,7 @@
                 <div class="form-group">
                 <label for="transactionSide">Which Transaction Side do we Represent</label>
                     <select name="transactionSide" id="transactionSide" class="form-control">
-                    @foreach($transactionSides as $transactionSide)
+                    @foreach($menu->items as $transactionSide)
 
                         <option value="{{$transactionSide->id}}">{{$transactionSide->name}}</option>
 
