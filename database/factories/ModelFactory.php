@@ -39,3 +39,12 @@ $factory->define(App\Menu::class, function (Faker\Generator $faker) {
     ];
 });
 
+
+$factory->define(App\Form::class, function (Faker\Generator $faker) {
+    
+    return [
+        'name' => $faker->name,
+    ];
+});
+
+

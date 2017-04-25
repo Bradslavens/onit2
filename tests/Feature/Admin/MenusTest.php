@@ -13,9 +13,9 @@ class MenusTest extends TestCase
 
     public function testShowMenus()
     {
-        $user = factory(\App\User::class)->make(['id' => 1]);
+        $user = factory(\App\User::class)->make(['id' => 1]);\
 
-        $this->artisan("db:seed");
+        factory(\App\Menu::class, 5)->make();
 
         $response = $this->actingAs($user)
               ->get('/admin/menus');

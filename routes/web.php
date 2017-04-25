@@ -28,3 +28,6 @@ Route::get('/start', 'TransactionController@create');
 
 // Admin 
 Route::get('/admin/menus', 'MenuController@index');
+
+//forms
+Route::get('/admin/forms', 'FormController@index');
