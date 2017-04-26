@@ -25,4 +25,23 @@ class FormFieldsTest extends TestCase
 
         $response->assertSee('Form List');
     }
+
+    public function testShowAddFormForm()
+    {
+        $user = factory(\App\User::class)->make(['id'=> 1]);
+
+        factory(\App\Field::class, 10)->make(['user_id'=>$user['id']]);
+
+        $response = $this->actingAs($user)->get('/admin/form');
+
+        $response->assertSee('Add Form');
+
+        $response->assertSee('<form');
+
+    }
+
+    public function testAddFormAndFields()
+    {
+        $user = factory(\App\User::class)->make(['id'=> 1]);
+    }
 }

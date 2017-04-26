@@ -6,8 +6,15 @@ use Illuminate\Http\Request;
 
 use \App\Form;
 
+use Illuminate\Support\Facades\Auth;
+
 class FormController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,7 +36,9 @@ class FormController extends Controller
      */
     public function create()
     {
-        //
+        $fields = \App\Field::where(['user_id' => Auth::id()])->get();
+
+        return view('create.form',['fields' => $fields]);
     }
 
     /**

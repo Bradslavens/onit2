@@ -31,3 +31,4 @@ Route::get('/admin/menus', 'MenuController@index');
 
 //forms
 Route::get('/admin/forms', 'FormController@index');
+Route::get('/admin/form' , 'FormController@create');

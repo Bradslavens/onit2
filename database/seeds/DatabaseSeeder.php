@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MenuSeeder::class);
         $this->call(FormFieldsSeeder::class);
         $this->call(FormSeeder::class);
+        $this->call(FieldForFormsSeeder::class);
     }
 }
