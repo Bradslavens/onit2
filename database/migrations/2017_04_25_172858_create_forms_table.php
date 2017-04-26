@@ -17,6 +17,7 @@ class CreateFormsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('user_id')->unsigned();
+            $table->string('description');
             $table->timestamps();
         });
     }

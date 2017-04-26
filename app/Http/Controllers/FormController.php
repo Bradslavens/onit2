@@ -49,7 +49,18 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form = new \App\Form;
+
+        $form->name = $request->name;
+        $form->description = $request->description;
+        $form->user_id = Auth::id();
+
+        $form->save();
+
+        $form->fields()->attach($request->fields);
+
+        return redirect()->action('FormController@create');
+
     }
 
     /**

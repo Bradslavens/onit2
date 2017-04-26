@@ -42,6 +42,35 @@ class FormFieldsTest extends TestCase
 
     public function testAddFormAndFields()
     {
-        $user = factory(\App\User::class)->make(['id'=> 1]);
+        $user = factory(\App\User::class)->create(['id'=> 1]);
+
+        $response = $this->actingAs($user)->post('/admin/form', [
+            'name' => 'RPA',
+            'description' => 'Residential Purchase Agreement',
+            'user_id' => $user['id'],
+            'fields' => [1,2,3],
+            ]);
+
+        $response->assertSee('Redirecting to http://localhost/admin/form');
+    }
+
+    public function testShowFormUpdateForm()
+    {
+
+        $user = factory(\App\User::class)->create(['id'=> 1]);
+
+        factory(\App\Form::class)->create([
+            'name' => 'RPA',
+            'description' => 'Residential Purchase Agreement',
+            'user_id' => $user['id'],
+            ])
+                ->each(function ($form) use ($user){
+                    $form->fields()->attach(factory(\App\Field::class, 5)->create(['user_id'=>$user['id']]));
+                });
+
+        $response = $this->actingAs($user)->patch('/admin/form/?id=1');
+
+        $response->assertSee('RPA');
+
     }
 }
