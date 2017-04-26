@@ -13,9 +13,13 @@ class MenusTest extends TestCase
 
     public function testShowMenus()
     {
-        $user = factory(\App\User::class)->make(['id' => 1]);\
+        $user = factory(\App\User::class)->make(['id'=> 1]);
 
-        factory(\App\Menu::class, 5)->make();
+        factory(\App\Menu::class, 5)->create(['user_id'=> $user['id']])
+                ->each(function($m) use ($user)
+                    {
+                        $m->items()->attach(factory(\App\Item::class, 5)->create(['user_id'=> $user['id']]));
+                    });
 
         $response = $this->actingAs($user)
               ->get('/admin/menus');

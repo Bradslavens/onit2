@@ -47,4 +47,20 @@ $factory->define(App\Form::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Item::class, function (Faker\Generator $faker)
+{
+    return [
+    'name' => $faker->name,
+    ];
+});
+
+$factory->define(App\Field::class, function (Faker\Generator $faker)
+{
+    return [
+    'name' => $faker->name,
+    ];
+});
+
+
+
 

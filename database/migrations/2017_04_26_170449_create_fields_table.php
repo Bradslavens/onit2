@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ItemMenu extends Migration
+class CreateFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class ItemMenu extends Migration
      */
     public function up()
     {
-        Schema::create('item_menu', function (Blueprint $table) {
+        Schema::create('fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('item_id')->unsigned();
-            $table->integer('menu_id')->unsigned();
+            $table->string('name');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class ItemMenu extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item_menu');
+        Schema::dropIfExists('fields');
     }
 }
