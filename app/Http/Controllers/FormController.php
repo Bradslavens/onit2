@@ -82,7 +82,12 @@ class FormController extends Controller
      */
     public function edit($id)
     {
-        //
+        $form = \App\Form::find($id);
+
+        $fields = \App\Field::where(['user_id' => Auth::id()])->get();
+
+        return view('edit.form', ['form' => $form, 'fields' => $fields]);
+
     }
 
     /**
