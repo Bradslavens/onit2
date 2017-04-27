@@ -68,7 +68,7 @@ class FormFieldsTest extends TestCase
                     $form->fields()->attach(factory(\App\Field::class, 5)->create(['user_id'=>$user['id']]));
                 });
 
-        $response = $this->actingAs($user)->put('/admin/form/1');
+        $response = $this->actingAs($user)->get('/admin/form/1');
 
         $response->assertSee('RPA');
 

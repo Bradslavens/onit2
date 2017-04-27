@@ -4,14 +4,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>Add Form</h1>
+            <h1>Update Form</h1>
             <form method="POST" action="\admin\form">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="_method" value="PUT">
 
                   <div class="form-group">
-                    <label for="name">Update Form</label>
+                    <label for="name">Form Name</label>
                     <input value="{{$form->name}}" type="text" class="form-control" id="name" placeholder="Form Name" required="">
                   </div>
 
@@ -28,8 +28,10 @@
                       @endforeach
                     </select>
                 <div>
-
-                <button type="submit" class="btn btn-default"></button>
+                <br>
+                <div class="form-group">
+                    <input type="submit" value="submit" class="btn btn-default">
+                </div>
 
             </form>
         </div>
