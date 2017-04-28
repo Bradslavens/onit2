@@ -59,7 +59,17 @@ $factory->define(App\Field::class, function (Faker\Generator $faker)
 {
     return [
     'name' => $faker->name,
+    'label' => $faker->word,
+    'description' => $faker->sentence,
     ];
+});
+
+$factory->define(App\App\TransactionForm::class, function(Faker\Generator $faker)
+{
+    return [
+    //
+    ];
+
 });
 
 

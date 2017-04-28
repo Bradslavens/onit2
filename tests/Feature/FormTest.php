@@ -17,7 +17,7 @@ class FormTest extends TestCase
 
         factory(\App\Form::class, 10)->make(['user_id' => 1]);
 
-        $response = $this->actingAs($user)->get('/admin/forms');
+        $response = $this->actingAs($user)->get(route('form.index'));
 
         $response->assertSee('Form List');
 

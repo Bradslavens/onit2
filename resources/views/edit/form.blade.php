@@ -5,7 +5,13 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Update Form</h1>
-            <form method="POST" action="\admin\form">
+
+            @if(session('message')){
+              <p>{{session('message')}}</p>
+            }
+            @endif
+
+            <form method="POST" action="{{route('form.update', ['id' =>$form->id])}}">
                 {{ csrf_field() }}
 
                 <input type="hidden" name="_method" value="PUT">

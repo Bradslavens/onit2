@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use \App\Form;
-
-use Illuminate\Support\Facades\Auth;
-
-class FormController extends Controller
+class TransactionFormController extends Controller
 {
     public function __construct()
     {
@@ -23,10 +19,6 @@ class FormController extends Controller
     public function index()
     {
         //
-        $forms = \App\Form::all();
-        
-        return view('index/form', ['forms' => $forms]);
-
     }
 
     /**
@@ -36,9 +28,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        $fields = \App\Field::where(['user_id' => Auth::id()])->get();
 
-        return view('create.form',['fields' => $fields]);
     }
 
     /**
@@ -49,18 +39,7 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        $form = new \App\Form;
-
-        $form->name = $request->name;
-        $form->description = $request->description;
-        $form->user_id = Auth::id();
-
-        $form->save();
-
-        $form->fields()->attach($request->fields);
-
-        return redirect()->route('form.create');
-
+        //
     }
 
     /**
@@ -71,11 +50,7 @@ class FormController extends Controller
      */
     public function show($id)
     {
-        
-        $form = \App\Form::find($id);
-
-        return view('edit.form', ['form' => $form]);
-
+        //
     }
 
     /**
@@ -86,13 +61,7 @@ class FormController extends Controller
      */
     public function edit($id)
     {
-        
-        $form = \App\Form::find($id);
-
-        $fields = \App\Field::where(['user_id' => Auth::id()])->get();
-
-        return view('edit.form', ['form' => $form, 'fields' => $fields]);
-
+        //
     }
 
     /**
@@ -104,25 +73,7 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $form = \App\Form::find($id);
-
-        if($form->user_id != Auth::id())
-        {
-            session()->flash('message', 'Oops, Something went wrong.');
-
-            return redirect()->route('form.edit', ['id' => $id]);
-
-        }
-
-        $form->name = $request->name;
-        $form->description = $request->description;
-
-        $form->save();
-
-        $form->fields()->attach($request->fields);
-
-        return redirect()->route('form.edit', ['id' => $id]);
+        //
     }
 
     /**
@@ -133,9 +84,18 @@ class FormController extends Controller
      */
     public function destroy($id)
     {
-        $form = \App\Form::find($id);
+        //
+    }
 
-        $form->delete();
+    public function check($transactionID)
+    {
+        return view('create.transactionForm', ['$transactionID']);
+    }
 
+    public function getTransactionForms(Request $request)
+    {
+        return \App\TransactionForm::where('id', $request->id)
+            ->where('user_id', Auth::id())
+            ->get();
     }
 }

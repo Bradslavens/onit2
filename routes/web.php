@@ -19,19 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-// dashboard routes
-Route::get('/dashboard', 'TransactionController@index');
-
-
-// start transaction routes
-Route::get('/start', 'TransactionController@create');
+//transaction
+Route::resource('transaction', 'TransactionController');
 
 // Admin 
 Route::get('/admin/menus', 'MenuController@index');
 
 //forms
-Route::get('/admin/forms', 'FormController@index');
-Route::get('/admin/form' , 'FormController@create');
-Route::post('/admin/form', 'FormController@store');
-Route::get('/admin/form/{id}', 'FormController@show');
-Route::put('/admin/form', 'FormController@edit');
+Route::resource('admin/form', 'FormController');
+
+//Transaction Forms
+Route::resource('transactionForm', 'TransactionFormController');
+Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@check');

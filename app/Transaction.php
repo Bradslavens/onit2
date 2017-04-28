@@ -10,4 +10,9 @@ class Transaction extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function forms()
+    {
+        return $this->belongsToMany(Form::class);
+    }
 }

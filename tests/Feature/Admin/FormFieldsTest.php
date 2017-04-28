@@ -21,7 +21,7 @@ class FormFieldsTest extends TestCase
                         $form->fields()->attach(factory(\App\Field::class, 5)->create(['user_id'=> $user['id']]));
                     });
 
-        $response = $this->actingAs($user)->get('/admin/forms');
+        $response = $this->actingAs($user)->get('admin/form');
 
         $response->assertSee('Form List');
     }
@@ -32,7 +32,7 @@ class FormFieldsTest extends TestCase
 
         factory(\App\Field::class, 10)->make(['user_id'=>$user['id']]);
 
-        $response = $this->actingAs($user)->get('/admin/form');
+        $response = $this->actingAs($user)->get(route('form.create'));
 
         $response->assertSee('Add Form');
 
@@ -51,10 +51,10 @@ class FormFieldsTest extends TestCase
             'fields' => [1,2,3],
             ]);
 
-        $response->assertSee('Redirecting to http://localhost/admin/form');
+        $response->assertRedirect(route('form.create'));
     }
 
-    public function testShowFormUpdateForm()
+    public function testEditForm()
     {
 
         $user = factory(\App\User::class)->create(['id'=> 1]);
@@ -68,9 +68,58 @@ class FormFieldsTest extends TestCase
                     $form->fields()->attach(factory(\App\Field::class, 5)->create(['user_id'=>$user['id']]));
                 });
 
-        $response = $this->actingAs($user)->get('/admin/form/1');
+        $response = $this->actingAs($user)->get('/admin/form/1/edit');
 
         $response->assertSee('RPA');
 
+    }
+
+    public function testUpdateFormAndFields()
+    {
+        $user = factory(\App\User::class)->create(['id'=> 1]);
+
+        factory(\App\Form::class)->create([
+            'name' => 'RPA',
+            'description' => 'Residential Purchase Agreement',
+            'user_id' => $user['id'],
+            ])
+                ->each(function ($form) use ($user){
+                    $form->fields()->attach(factory(\App\Field::class, 5)->create(['user_id'=>$user['id']]));
+                });
+
+
+        $response = $this->actingAs($user)->patch('/admin/form/1', [
+            'name' => 'WPA',
+            'description' => 'Wood Destroying Pest Addendum',
+            'user_id' => $user['id'],
+            'fields' => [1,2,3],
+            ]);
+
+        $response->assertRedirect(route('form.edit', ['id' => 1]));
+    }
+
+    public function testIfItDiesForWrongUser()
+    {
+
+        $user = factory(\App\User::class)->create(['id'=> 999]);
+
+        factory(\App\Form::class)->create([
+            'name' => 'RPA',
+            'description' => 'Residential Purchase Agreement',
+            'user_id' => 1,
+            ])
+                ->each(function ($form) use ($user){
+                    $form->fields()->attach(factory(\App\Field::class, 5)->create(['user_id'=>$user['id']]));
+                });
+
+
+        $response = $this->actingAs($user)->patch('/admin/form/1', [
+            'name' => 'WPA',
+            'description' => 'Wood Destroying Pest Addendum',
+            'user_id' => $user['id'],
+            'fields' => [1,2,3],
+            ]);
+
+        $response->assertSessionHas('message', 'Oops, Something went wrong.');
     }
 }

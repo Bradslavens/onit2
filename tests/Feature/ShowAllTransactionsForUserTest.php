@@ -19,7 +19,7 @@ class ShowAllTransactionsForUserTest extends TestCase
         $transaction = factory(\App\Transaction::class, 10)->make(['user_id' => 1]);
 
         $response = $this->actingAs($user)
-              ->get('/dashboard');
+              ->get('/home');
 
         $response->assertSee('Transaction List');
     }
@@ -27,7 +27,7 @@ class ShowAllTransactionsForUserTest extends TestCase
     public function testDashboardRequiresLogin()
     {
         // go to dashboard without a user
-        $response = $this->get('/dashboard');
+        $response = $this->get('/home');
 
         // confirm going to login page
         $response->assertSee('ogin');

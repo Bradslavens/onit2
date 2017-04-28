@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Add Form</h1>
-            <form method="POST" action="\admin\form">
+            <form method="POST" action="{{route('form.store')}}">
                 {{ csrf_field() }}
 
                   <div class="form-group">

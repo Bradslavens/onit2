@@ -22,7 +22,7 @@ class AddATransactionTest extends TestCase
             });
 
         $response = $this->actingAs($user)
-              ->get('/start');
+              ->get(route('transaction.create'));
 
         $response->assertSee('Start a Transaction');
     }

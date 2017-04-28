@@ -4,12 +4,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>Menus</h1>
-            <ul class="list-group">
-                @foreach($menus as $menu)
-                    <li value="{{$menu->id}}">{{$menu->name}}</li>
-                @endforeach
-            </ul>
+            <h1>Form</h1>
+                <ul>
+                  <li>{{$form->name}}</li>
+                  <li>{{$form->decription}}</li>
+                </ul>
+                <a class="btn btn-danger" href="{{route('form.destroy', ['id=>$form=>id'])}}">Delete Form</a>
+
         </div>
     </div>
 </div>
