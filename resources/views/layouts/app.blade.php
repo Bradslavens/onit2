@@ -21,6 +21,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
+    @yield('stylesheet')
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,5 +36,8 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/css/viewport-bug-workaround.css" rel="stylesheet">
+
+    @yield('script')
+    
   </body>
 </html>

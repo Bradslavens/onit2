@@ -1,5 +1,14 @@
 @extends('layouts.app')
 
+@section('stylesheet')
+
+    @include('jqthemes.php')
+
+@endsection
+
+
+
+
 @section('content')
 <div class="container">
     <div class="row">
@@ -13,19 +22,29 @@
                     <input type="text" class="form-control" id="formName" placeholder="Enter Form Name" required>
                   </div>
 
-                @if(exists($fields))
+                {{-- add jquery autocomplete --}}
+                <div class="ui-widget">
+                      <label for="birds">Birds: </label>
+                      <input id="birds">
+                    </div>
+                     
+                    <div class="ui-widget" style="margin-top:2em; font-family:Arial">
+                      Result:
+                      <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+                    </div>
 
-                @foreach($fields as $field)
-                      <div class="form-group">
-                        <label for="{{$field->id}}">{{$field->label}}</label>
-                        <input name="{{$field->name}}" title="{{$field->description}}" type="text" class="form-control" id="{{$field->id}}" placeholder="{{$field->label}}">
-                      </div>
-                @endforeach
 
-                @endif
+
+                    
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+    
+    @include('jQAutocompleteScripts.php')
+
 @endsection
