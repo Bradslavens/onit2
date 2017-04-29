@@ -64,13 +64,6 @@ $factory->define(App\Field::class, function (Faker\Generator $faker)
     ];
 });
 
-$factory->define(App\App\TransactionForm::class, function(Faker\Generator $faker)
-{
-    return [
-    //
-    ];
-
-});
 
 
 

@@ -31,3 +31,4 @@ Route::resource('admin/form', 'FormController');
 //Transaction Forms
 Route::resource('transactionForm', 'TransactionFormController');
 Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@check');
+Route::get('transactionForms', 'TransactionFormController@getTransactionForms')->name('transaction.forms');

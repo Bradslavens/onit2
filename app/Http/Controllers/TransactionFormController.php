@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 class TransactionFormController extends Controller
 {
     public function __construct()
@@ -94,8 +96,17 @@ class TransactionFormController extends Controller
 
     public function getTransactionForms(Request $request)
     {
-        return \App\TransactionForm::where('id', $request->id)
-            ->where('user_id', Auth::id())
-            ->get();
+        
+        $transaction = \App\Transaction::find($request->id);
+
+        if($transaction->user_id === Auth::id())
+        {
+            return $transaction->forms;
+        }
+        else
+        {
+            return redirect('login');
+        }
+        
     }
 }
