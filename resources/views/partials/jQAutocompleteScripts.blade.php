@@ -1,17 +1,20 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
+var base_url = window.location.origin;
+
 $( function() {
 function log( message ) {
   $( "<div>" ).text( message ).prependTo( "#log" );
   $( "#log" ).scrollTop( 0 );
 }
 
-$( "#birds" ).autocomplete({
+$( "#form" ).autocomplete({
   source: function( request, response ) {
     $.ajax( {
-      url: "search.php",
-      dataType: "jsonp",
+      url: base_url + "/admin/forms",
+      dataType: "json",
       data: {
         term: request.term
       },

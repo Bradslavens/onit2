@@ -138,4 +138,12 @@ class FormController extends Controller
         $form->delete();
 
     }
+
+    public function getForms()
+    {
+        $forms = \App\Form::where('user_id' , Auth::id())
+            ->get(['name as value']);
+
+        return $forms;
+    }
 }

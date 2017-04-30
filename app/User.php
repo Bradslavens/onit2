@@ -29,6 +29,11 @@ class User extends Authenticatable
 
     public function transactions()
     {
-       return $this->hasMany('App\Transaction');
+        return $this->hasMany('App\Transaction');
+    }
+
+    public function forms()
+    {
+        return $this->hasMany(Form::class);
     }
 }

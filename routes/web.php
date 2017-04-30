@@ -27,6 +27,7 @@ Route::get('/admin/menus', 'MenuController@index');
 
 //forms
 Route::resource('admin/form', 'FormController');
+Route::get('admin/forms', 'FormController@getForms')->name('get.forms');
 
 //Transaction Forms
 Route::resource('transactionForm', 'TransactionFormController');
