@@ -33,3 +33,6 @@ Route::get('admin/forms', 'FormController@getForms')->name('get.forms');
 Route::resource('transactionForm', 'TransactionFormController');
 Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@check');
 Route::get('transactionForms', 'TransactionFormController@getTransactionForms')->name('transaction.forms');
+
+//User Groups
+Route::resource('group', 'GroupController');
