@@ -13,9 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\teammateInvited' => [
-            'App\Listeners\sendInvitationToTeammate',
-            'App\Listeners\setFlashMessage',
+        'App\Events\TeammateInvited' => [
+            'App\Listeners\SendInvitationToTeammate',
+            'App\Listeners\SetFlashMessage',
         ],
     ];
 

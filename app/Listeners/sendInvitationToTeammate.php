@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\teammateInvited;
+use App\Events\TeammateInvited;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class sendInvitationToTeammate
+class SendInvitationToTeammate
 {
     /**
      * Create the event listener.
@@ -21,10 +21,10 @@ class sendInvitationToTeammate
     /**
      * Handle the event.
      *
-     * @param  teammateInvited  $event
+     * @param  TeammateInvited  $event
      * @return void
      */
-    public function handle(teammateInvited $event)
+    public function handle(TeammateInvited $event)
     {
         //
     }

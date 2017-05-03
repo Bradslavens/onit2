@@ -10,22 +10,20 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-use App\Teammate;
+use App\User;
 
-class teammateInvited
+class TeammateInvited
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
-    public $teammate;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Teammate $teammate)
+    public function __construct(User $user)
     {
-        $this->teammate = $teammate;
+        $this->user = $user;
     }
 
     /**

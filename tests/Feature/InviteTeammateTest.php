@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\DatabaseTransactions; 
 
 class InviteTeammateTest extends TestCase
 {
@@ -40,6 +40,7 @@ class InviteTeammateTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('teammate.store', ['email' => 'teammate@example1.com', 'role' =>'teammate', 'name' => 'Tammy Teammate']));
 
+        $response->assertSee('Redirecting');
         $response->assertRedirect(route('teammate.index'));
 
     }
@@ -55,6 +56,7 @@ class InviteTeammateTest extends TestCase
         $resource->assertSee('Congrats');
 
     }
+
     // test invite user with temporary password
 
     // test teammate updates password

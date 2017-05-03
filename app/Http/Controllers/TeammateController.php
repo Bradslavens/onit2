@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Events\TeammateInvited;
+
 use jarne\password\Password as Password;
 
 class TeammateController extends Controller
@@ -57,7 +59,9 @@ class TeammateController extends Controller
 
         $teammate->save();
 
-        event('teammateInvited', $teammate);
+        $teammate2 = \App\User::findOrFail($teammate->id);
+
+        event(new TeammateInvited($teammate2));
 
         return redirect(route('teammate.index')); 
     }
