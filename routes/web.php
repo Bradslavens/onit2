@@ -35,4 +35,4 @@ Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@c
 Route::get('transactionForms', 'TransactionFormController@getTransactionForms')->name('transaction.forms');
 
 //User Groups
-Route::resource('group', 'GroupController');
+Route::resource('teammate', 'TeammateController');

@@ -26,6 +26,7 @@ class AddGroupMemberTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('group.store'),['name' => 'The Warriors']);
 
-        $response->assertSee('tttt');
+        $response->assertRedirect(route('group.index'))
+                ->assertStatus(302);
     }
 }

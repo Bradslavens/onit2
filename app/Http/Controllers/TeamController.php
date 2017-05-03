@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class GroupController extends Controller
+class TeamController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +13,7 @@ class GroupController extends Controller
      */
     public function index()
     {
-        $groups = \App\Group::where('user_id', Auth::id());
-
-        return view('index.group',['groups' => $groups]);
+        //
     }
 
     /**
@@ -30,7 +23,7 @@ class GroupController extends Controller
      */
     public function create()
     {
-        return view('create.group');
+        //
     }
 
     /**
@@ -41,20 +34,7 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        $group = new \App\Group();
-
-        $group->name = $request->name;
-
-        $group->user_id = Auth::id();
-
-        $group->save();
-
-        $user = \App\User::find(Auth::id());
-
-        $user->group()->associate($group);
-        
-        return redirect(route('group.index'))->with('message', 'Congratulations, '. $user->name . ' was added to ' . $group->name);
-
+        //
     }
 
     /**
