@@ -26,6 +26,6 @@ class SetFlashMessage
      */
     public function handle(TeammateInvited $event)
     {
-        //
+        session()->flash('message', 'Congrats ' . $event->user->name . ' was invited to join your Team!');
     }
 }
