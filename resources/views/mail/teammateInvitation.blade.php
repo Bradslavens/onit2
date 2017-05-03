@@ -1,0 +1,1 @@
+<h1>Welcome to our Team {{$user->name}} </h1>

@@ -5,6 +5,8 @@ namespace App\Listeners;
 use App\Events\TeammateInvited;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendNewTeamMemberLoginInfo;
 
 class SendInvitationToTeammate
 {
@@ -26,6 +28,7 @@ class SendInvitationToTeammate
      */
     public function handle(TeammateInvited $event)
     {
-        //
+        Mail::to($event->user->email)
+            ->send(new SendNewTeamMemberLoginInfo($event->user));
     }
 }
