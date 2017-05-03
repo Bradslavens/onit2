@@ -10,12 +10,12 @@
 
                   <div class="form-group">
                     <label for="name">Form Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Form Name" required="">
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Form Name" required="">
                   </div>
 
                   <div class="form-group">
                       <label for="body">Enter A Description of the Form</label>
-                      <input type="" class="form-control" id="body" placeholder="Enter A Description of the Form" required>
+                      <input name="body" type="" class="form-control" id="body" placeholder="Enter A Description of the Form" required>
                   </div>
 
                 <div class="form-group">

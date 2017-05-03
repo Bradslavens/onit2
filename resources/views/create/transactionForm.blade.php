@@ -20,7 +20,7 @@
                 {{-- add jquery autocomplete --}}
                 <div class="ui-widget">
                       <label for="form">Form: </label>
-                      <input id="form">
+                      <input name="form" id="form">
                 </div>
 
                 <button type="submit" class="btn btn-default pull-right">Submit</button>

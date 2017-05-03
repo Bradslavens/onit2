@@ -10,7 +10,7 @@
 
                   <div class="form-group">
                     <label for="name">Group Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Group Name" required>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Group Name" required>
                   </div>
 
                 <button type="submit" class="btn btn-default">Add Group</button>

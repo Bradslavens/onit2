@@ -10,7 +10,7 @@
 
                   <div class="form-group">
                     <label for="name">Transaction Name or Address</label>
-                    <input type="text" class="form-control" id="name" placeholder="Transaction Name or Address">
+                    <input  name="name" type="text" class="form-control" id="name" placeholder="Transaction Name or Address">
                   </div>
 
                 <div class="form-group">

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use jarne\password\Password as Password;
 
 class TeammateController extends Controller
 {
@@ -14,10 +17,11 @@ class TeammateController extends Controller
     public function index()
     {
         // get the team leader based on auth user id
-        $user = \App\Team::find(Auth::id());
+        $teamLeader = \App\User::find(Auth::id());
 
         // get the users teammates
-        $teammates = $user->teammates;
+        $teammates = \App\User::where('teamLeader', $teamLeader)
+                ->get();
         
         return view('index.teammate',['teammates'=>$teammates]);
     }
@@ -29,7 +33,7 @@ class TeammateController extends Controller
      */
     public function create()
     {
-        //
+        return view('create.teammate');
     }
 
     /**
@@ -40,7 +44,22 @@ class TeammateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $password = new Password();
+        $tempPass = $password->generate(10);
+
+        $teammate = new \App\User;
+
+        $teammate->email = $request->email;
+        $teammate->name = $request->name;
+        $teammate->teamLeader = Auth::id();
+        $teammate->role = 'teammate';
+        $teammate->password = bcrypt($tempPass);
+
+        $teammate->save();
+
+        event('teammateInvited', $teammate);
+
+        return redirect(route('teammate.index')); 
     }
 
     /**
