@@ -13,7 +13,7 @@ class TransactionFormsTest extends TestCase
 
     public function testCreateTransactionForm()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->create(['role' => 'admin']);
 
         $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['id']]);
 

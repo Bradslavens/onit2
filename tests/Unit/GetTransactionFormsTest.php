@@ -12,7 +12,7 @@ class GetTransactionFormsTest extends TestCase
 
     public function testGetTransactionFormsReturnsAListOfForms()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->create(['role' => 'admin']);
 
         factory(\App\Transaction::class)->create(['user_id'=>$user['id']])            
                 ->each( function($t) use ($user)

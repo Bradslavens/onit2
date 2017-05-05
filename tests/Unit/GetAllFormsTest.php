@@ -12,7 +12,7 @@ class GetAllFormsTest extends TestCase
 
    public function testGetAllFormsJson()
    {
-        $user = factory(\App\User::class)->create();
+        $user = factory(\App\User::class)->create(['role' => 'admin']);
                 
         factory(\App\Form::class, 10)->create(['user_id' => $user['id']]);
 

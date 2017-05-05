@@ -28,6 +28,6 @@ class HomeController extends Controller
 
         $transactions =  \App\Transaction::get();
 
-        return view('index.home', ['transactions' => $transactions] );
+        return view('index.home', ['transactions' => $transactions , 'user' => $user]);
     }
 }

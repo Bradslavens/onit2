@@ -5,11 +5,8 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
 
-            @if(session('message'))
-                <div class="alert alert-success" role="alert">
-                  {{session('message')}}
-                </div>
-            @endif
+            @include('partials.message')
+            
             <h1>Group List</h1>
             <ul class="list-group">
                 @foreach($groups as $group)

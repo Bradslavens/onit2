@@ -13,7 +13,7 @@ class FormFieldsTest extends TestCase
 
     public function testFormFields()
     {
-        $user = factory(\App\User::class)->make(['id'=> 1]);
+        $user = factory(\App\User::class)->make(['id'=> 1, 'role' => 'admin']);
 
         factory(\App\Form::class, 5)->create(['user_id'=> $user['id']])
                 ->each(function($form) use ($user)
@@ -42,7 +42,7 @@ class FormFieldsTest extends TestCase
 
     public function testAddFormAndFields()
     {
-        $user = factory(\App\User::class)->create(['id'=> 1]);
+        $user = factory(\App\User::class)->create(['id'=> 1, 'role' => 'admin']);
 
         $response = $this->actingAs($user)->post('/admin/form', [
             'name' => 'RPA',
@@ -57,7 +57,7 @@ class FormFieldsTest extends TestCase
     public function testEditForm()
     {
 
-        $user = factory(\App\User::class)->create(['id'=> 1]);
+        $user = factory(\App\User::class)->create(['id'=> 1, 'role' => 'admin']);
 
         factory(\App\Form::class)->create([
             'name' => 'RPA',
@@ -76,7 +76,7 @@ class FormFieldsTest extends TestCase
 
     public function testUpdateFormAndFields()
     {
-        $user = factory(\App\User::class)->create(['id'=> 1]);
+        $user = factory(\App\User::class)->create(['id'=> 1, 'role' => 'admin']);
 
         factory(\App\Form::class)->create([
             'name' => 'RPA',
@@ -101,7 +101,7 @@ class FormFieldsTest extends TestCase
     public function testIfItDiesForWrongUser()
     {
 
-        $user = factory(\App\User::class)->create(['id'=> 999]);
+        $user = factory(\App\User::class)->create(['id'=> 999, 'role' => 'admin']);
 
         factory(\App\Form::class)->create([
             'name' => 'RPA',

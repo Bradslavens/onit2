@@ -24,6 +24,7 @@ Route::resource('transaction', 'TransactionController');
 
 // Admin 
 Route::get('/admin/menus', 'MenuController@index');
+Route::get('/admin' , 'AdminController@index')->name('admin.home');
 
 //forms
 Route::resource('admin/form', 'FormController');
@@ -35,4 +36,4 @@ Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@c
 Route::get('transactionForms', 'TransactionFormController@getTransactionForms')->name('transaction.forms');
 
 //User Groups
-Route::resource('teammate', 'TeammateController');
+Route::resource('admin/teammate', 'TeammateController');

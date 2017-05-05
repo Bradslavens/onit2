@@ -14,9 +14,9 @@ class InviteTeammateTest extends TestCase
     // test show current team mates
     public function testTeammateIndexPage()
     {
-        $user = factory(\App\User::class)->make(['role' => 'admin']);
+        $user = factory(\App\User::class)->create(['role' => 'admin']);
 
-        factory(\App\User::class, 10)->make(['teamLeader' => $user['id']]);
+        factory(\App\User::class, 10)->create(['teamLeader' => $user['id'], 'role' => 'teammate']);
 
         $resource = $this->actingAs($user)->get(route('teammate.index'));
 
@@ -25,7 +25,7 @@ class InviteTeammateTest extends TestCase
     // test show invite user form
     public function testShowInviteTeammateForm()
     {
-        $user = factory(\App\User::class)->make();
+        $user = factory(\App\User::class)->create(['role' => 'admin']);
 
         $response = $this->actingAs($user)->get(route('teammate.create'));
 
@@ -47,9 +47,9 @@ class InviteTeammateTest extends TestCase
 
     public function testEventToFlashNameToSession()
     {
-        $user = factory(\App\User::class)->make(['role' => 'admin']);
+        $user = factory(\App\User::class)->create(['role' => 'admin']);
 
-        factory(\App\User::class, 10)->make(['teamLeader' => $user['id']]);
+        factory(\App\User::class, 10)->create(['teamLeader' => $user['id'], 'role' => 'teammate']);
 
         $resource = $this->actingAs($user)->withSession(['message' => 'Congrats'])->get(route('teammate.index'));
 

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Invite A User to Your Team</h1>
-            <form method="POST" action="{{route('teammate.create')}}">
+            <form method="POST" action="{{route('teammate.store')}}">
                 {{ csrf_field() }}
 
                   <div class="form-group">

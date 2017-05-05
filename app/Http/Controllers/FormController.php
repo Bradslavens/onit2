@@ -23,7 +23,7 @@ class FormController extends Controller
     public function index()
     {
         //
-        $forms = \App\Form::all();
+        $forms = \App\Form::where('user_id', $teamLeader->id)->get();
         
         return view('index/form', ['forms' => $forms]);
 
@@ -142,7 +142,7 @@ class FormController extends Controller
     public function getForms()
     {
         $forms = \App\Form::where('user_id' , Auth::id())
-            ->get(['name as value']);
+            ->get(['id','name as value']);
 
         return $forms;
     }
