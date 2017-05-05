@@ -5,13 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;    
 use Illuminate\Support\Facades\Auth;
 use App\Menu;
+use App\Custom\TeamLeader;
 
 class TransactionController extends Controller
 {
 
+    protected $teamLeader;
+
     public function __construct()
     {
         $this->middleware('auth');
+
+        // set team leader
+        $this->teamLeader = new TeamLeader;
+
     }
 
 
@@ -22,9 +29,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $user = Auth::user();
 
-        $transactions =  \App\Transaction::get();
+        $transactions =  \App\Transaction::where('teamLeader', $this->teamLeader->id)->get();
 
         return view('dashboard', ['transactions' => $transactions] );
     }
@@ -36,13 +42,11 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $user_id = Auth::id();
-
         // get the sides id
         $menu = Menu::where('name', 'transactionSide')
-                    ->where('user_id', $user_id)
+                    ->where('user_id', $this->teamLeader->id)
                     ->first();
-
+                    
         return view('transaction.start', ['menu' => $menu]);
     }
 

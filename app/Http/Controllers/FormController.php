@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use \App\Form;
-
 use Illuminate\Support\Facades\Auth;
+use App\Custom\TeamLeader;
 
 class FormController extends Controller
 {
+    protected $teamLeader;
+
     public function __construct()
     {
         $this->middleware('auth');
+
+        // set team leader
+        $this->teamLeader = new TeamLeader;
     }
 
     /**
@@ -23,7 +27,7 @@ class FormController extends Controller
     public function index()
     {
         //
-        $forms = \App\Form::where('user_id', $teamLeader->id)->get();
+        $forms = \App\Form::where('user_id', $this->teamLeader->id)->get();
         
         return view('index/form', ['forms' => $forms]);
 
@@ -36,7 +40,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        $fields = \App\Field::where(['user_id' => Auth::id()])->get();
+        $fields = \App\Field::where(['user_id' => $this->teamLeader->id])->get();
 
         return view('create.form',['fields' => $fields]);
     }
@@ -53,7 +57,7 @@ class FormController extends Controller
 
         $form->name = $request->name;
         $form->description = $request->description;
-        $form->user_id = Auth::id();
+        $form->user_id = $this->teamLeader->id;
 
         $form->save();
 
@@ -89,7 +93,7 @@ class FormController extends Controller
         
         $form = \App\Form::find($id);
 
-        $fields = \App\Field::where(['user_id' => Auth::id()])->get();
+        $fields = \App\Field::where(['user_id' => $this->teamLeader->id])->get();
 
         return view('edit.form', ['form' => $form, 'fields' => $fields]);
 
@@ -107,7 +111,7 @@ class FormController extends Controller
         
         $form = \App\Form::find($id);
 
-        if($form->user_id != Auth::id())
+        if($form->user_id != $this->teamLeader->id)
         {
             session()->flash('message', 'Oops, Something went wrong.');
 
@@ -141,7 +145,7 @@ class FormController extends Controller
 
     public function getForms()
     {
-        $forms = \App\Form::where('user_id' , Auth::id())
+        $forms = \App\Form::where('user_id' , $this->teamLeader->id)
             ->get(['id','name as value']);
 
         return $forms;

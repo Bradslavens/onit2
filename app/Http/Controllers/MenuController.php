@@ -4,14 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Custom\TeamLeader;
 
 use App\Menu;
 
 class MenuController extends Controller
 {
+    protected $teamLeader;
+
     public function __construct()
     {
         $this->middleware('auth');
+
+        // set team leader
+        $this->teamLeader = new TeamLeader;
     }
 
 
@@ -22,11 +28,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        //
-        
-        $user_id = Auth::id();
-
-        $menus = Menu::where('user_id', $user_id)->get();
+        $menus = Menu::where('user_id', $this->teamLeader->id)->get();
         
         return view('admin.menus',['menus' => $menus]);
         

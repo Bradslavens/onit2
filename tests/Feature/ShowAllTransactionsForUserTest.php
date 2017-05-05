@@ -14,9 +14,9 @@ class ShowAllTransactionsForUserTest extends TestCase
 
     public function testShowTransactionList()
     {
-        $user = factory(\App\User::class)->make(['id' => 1]);
+        $user = factory(\App\User::class)->create(['teamLeader' => 1, 'role' => 'teammate']);
 
-        $transaction = factory(\App\Transaction::class, 10)->make(['user_id' => 1]);
+        $transaction = factory(\App\Transaction::class, 10)->create(['user_id' => 1]);
 
         $response = $this->actingAs($user)
               ->get('/home');

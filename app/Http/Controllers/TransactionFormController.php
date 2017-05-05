@@ -5,12 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use App\Custom\TeamLeader;
 
 class TransactionFormController extends Controller
 {
+
+    protected $teamLeader;
+
     public function __construct()
     {
         $this->middleware('auth');
+
+        // set team leader
+        $this->teamLeader = new TeamLeader;
     }
 
     /**
@@ -99,7 +106,7 @@ class TransactionFormController extends Controller
         
         $transaction = \App\Transaction::find($request->id);
 
-        if($transaction->user_id === Auth::id())
+        if($transaction->user_id === $this->teamLeader->id)
         {
             return $transaction->forms;
         }

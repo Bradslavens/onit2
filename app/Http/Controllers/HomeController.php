@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Custom\TeamLeader;
 
 class HomeController extends Controller
 {
+
+    protected $teamLeader;
+
     /**
      * Create a new controller instance.
      *
@@ -15,6 +19,9 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
+        // set team leader
+        $this->teamLeader = new TeamLeader;
     }
 
     /**
@@ -26,7 +33,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $transactions =  \App\Transaction::get();
+        $transactions =  \App\Transaction::where('user_id', $this->teamLeader->id)->get();
 
         return view('index.home', ['transactions' => $transactions , 'user' => $user]);
     }
