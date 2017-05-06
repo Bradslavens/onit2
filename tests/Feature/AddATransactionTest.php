@@ -13,11 +13,11 @@ class AddATransactionTest extends TestCase
     
     
     public function testTranactionShowAddForm()
-    {
+    {        
         $user = factory(\App\User::class)->create(['role' => 'teammate', 'teamLeader' => 2]);
 
-        factory(\App\Menu::class)->create(['name' => 'transactionSide', 'user_id' => $user['id']])
-            ->each(function ($m) use ($user) {
+        factory(\App\Menu::class)->create(['name' => 'transactionSide', 'user_id' => 2])
+            ->each(function ($m) {
                 $m->items()->attach(factory(\App\Item::class, 5)->create(['user_id' => 2]));
             });
 

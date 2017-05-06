@@ -9,18 +9,14 @@ use App\Custom\TeamLeader;
 
 class TransactionController extends Controller
 {
-
-    protected $teamLeader;
+    protected $user;
 
     public function __construct()
     {
         $this->middleware('auth');
 
-        // set team leader
-        $this->teamLeader = new TeamLeader;
-
+        $this->user = \App\User::find(Auth::id());
     }
-
 
     /**
      * Display a listing of transactions.
@@ -30,7 +26,7 @@ class TransactionController extends Controller
     public function index()
     {
 
-        $transactions =  \App\Transaction::where('teamLeader', $this->teamLeader->id)->get();
+        $transactions =  \App\Transaction::where('teamLeader', $this->user->teamLeader)->get();
 
         return view('dashboard', ['transactions' => $transactions] );
     }
@@ -44,7 +40,7 @@ class TransactionController extends Controller
     {
         // get the sides id
         $menu = Menu::where('name', 'transactionSide')
-                    ->where('user_id', $this->teamLeader->id)
+                    ->where('user_id', $this->user->teamLeader)
                     ->first();
                     
         return view('transaction.start', ['menu' => $menu]);

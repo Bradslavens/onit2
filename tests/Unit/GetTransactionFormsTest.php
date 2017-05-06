@@ -12,12 +12,12 @@ class GetTransactionFormsTest extends TestCase
 
     public function testGetTransactionFormsReturnsAListOfForms()
     {
-        $user = factory(\App\User::class)->create(['role' => 'admin']);
+        $user = factory(\App\User::class)->create(['role' => 'admin', 'teamLeader' => 1]);
 
-        factory(\App\Transaction::class)->create(['user_id'=>$user['id']])            
+        factory(\App\Transaction::class)->create(['user_id'=>1])            
                 ->each( function($t) use ($user)
                     {
-                        $t->forms()->attach(factory(\App\Form::class, 10)->create(['user_id'=>$user['id']]));
+                        $t->forms()->attach(factory(\App\Form::class, 10)->create(['user_id'=>1]));
                     });        
         
         $transaction = \App\Transaction::first();

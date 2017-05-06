@@ -10,14 +10,13 @@ use App\Menu;
 
 class MenuController extends Controller
 {
-    protected $teamLeader;
+    protected $user;
 
     public function __construct()
     {
         $this->middleware('auth');
 
-        // set team leader
-        $this->teamLeader = new TeamLeader;
+        $this->user = \App\User::find(Auth::id());
     }
 
 
@@ -28,7 +27,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::where('user_id', $this->teamLeader->id)->get();
+        $menus = Menu::where('user_id', $this->user->teamLeader)->get();
         
         return view('admin.menus',['menus' => $menus]);
         

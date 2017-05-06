@@ -8,20 +8,13 @@ use App\Custom\TeamLeader;
 
 class HomeController extends Controller
 {
+    protected $user;
 
-    protected $teamLeader;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
 
-        // set team leader
-        $this->teamLeader = new TeamLeader;
+        $this->user = \App\User::find(Auth::id());
     }
 
     /**
@@ -33,7 +26,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $transactions =  \App\Transaction::where('user_id', $this->teamLeader->id)->get();
+        $transactions =  \App\Transaction::where('user_id', $this->user->teamLeader)->get();
 
         return view('index.home', ['transactions' => $transactions , 'user' => $user]);
     }

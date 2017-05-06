@@ -9,16 +9,15 @@ use App\Custom\TeamLeader;
 
 class TransactionFormController extends Controller
 {
-
-    protected $teamLeader;
+    protected $user;
 
     public function __construct()
     {
         $this->middleware('auth');
 
-        // set team leader
-        $this->teamLeader = new TeamLeader;
+        $this->user = \App\User::find(Auth::id());
     }
+
 
     /**
      * Display a listing of the resource.
@@ -106,7 +105,7 @@ class TransactionFormController extends Controller
         
         $transaction = \App\Transaction::find($request->id);
 
-        if($transaction->user_id === $this->teamLeader->id)
+        if($transaction->user_id === $this->user->teamLeader)
         {
             return $transaction->forms;
         }

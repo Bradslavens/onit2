@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use \App\Form;
 use Illuminate\Support\Facades\Auth;
 use App\Custom\TeamLeader;
+use \App\User;
 
 class FormController extends Controller
 {
-    protected $teamLeader;
+    protected $user;
 
     public function __construct()
     {
         $this->middleware('auth');
 
-        // set team leader
-        $this->teamLeader = new TeamLeader;
+        $this->user = \App\User::find(Auth::id());
     }
 
     /**
@@ -26,8 +26,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        //
-        $forms = \App\Form::where('user_id', $this->teamLeader->id)->get();
+        $forms = \App\Form::where('user_id', $this->user->teamLeader)->get();
         
         return view('index/form', ['forms' => $forms]);
 
@@ -40,7 +39,7 @@ class FormController extends Controller
      */
     public function create()
     {
-        $fields = \App\Field::where(['user_id' => $this->teamLeader->id])->get();
+        $fields = \App\Field::where(['user_id' => $this->user->teamLeader])->get();
 
         return view('create.form',['fields' => $fields]);
     }
@@ -57,9 +56,10 @@ class FormController extends Controller
 
         $form->name = $request->name;
         $form->description = $request->description;
-        $form->user_id = $this->teamLeader->id;
+        $form->user_id = $this->user->teamLeader;
 
         $form->save();
+
 
         $form->fields()->attach($request->fields);
 
@@ -93,7 +93,7 @@ class FormController extends Controller
         
         $form = \App\Form::find($id);
 
-        $fields = \App\Field::where(['user_id' => $this->teamLeader->id])->get();
+        $fields = \App\Field::where(['user_id' => $this->user->teamLeader])->get();
 
         return view('edit.form', ['form' => $form, 'fields' => $fields]);
 
@@ -111,7 +111,7 @@ class FormController extends Controller
         
         $form = \App\Form::find($id);
 
-        if($form->user_id != $this->teamLeader->id)
+        if($form->user_id != $this->user->teamLeader)
         {
             session()->flash('message', 'Oops, Something went wrong.');
 
@@ -145,7 +145,7 @@ class FormController extends Controller
 
     public function getForms()
     {
-        $forms = \App\Form::where('user_id' , $this->teamLeader->id)
+        $forms = \App\Form::where('user_id' , $this->user->teamLeader)
             ->get(['id','name as value']);
 
         return $forms;

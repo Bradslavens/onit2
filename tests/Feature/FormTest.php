@@ -13,7 +13,7 @@ class FormTest extends TestCase
 
     public function testShowForms()
     {
-        $user = factory(\App\User::class)->make(['id'=> 1 ]);
+        $user = factory(\App\User::class)->create(['role' => 'admin', 'teamLeader' => 1]);
 
         factory(\App\Form::class, 10)->make(['user_id' => 1]);
 
