@@ -37,3 +37,6 @@ Route::get('transactionForms', 'TransactionFormController@getTransactionForms')-
 
 //User Groups
 Route::resource('admin/teammate', 'TeammateController');
+
+//Transactio form filed controller
+Route::resource('transactionFormField', 'TransactionFormFieldController');
