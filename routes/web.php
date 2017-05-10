@@ -40,3 +40,6 @@ Route::resource('admin/teammate', 'TeammateController');
 
 //Transactio form filed controller
 Route::resource('transactionFormField', 'TransactionFormFieldController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

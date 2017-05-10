@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionFormFieldController extends Controller
 {
@@ -45,7 +46,20 @@ class TransactionFormFieldController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transactionFormField = new \App\TransactionFormField;
+
+        $transactionFormField->transaction_id = $request->transaction_id;
+        $transactionFormField->form_id = $request->form_id;
+        $transactionFormField->field_id = $request->field_id;
+        $transactionFormField->value = $request->value;
+        $transactionFormField->user_id = Auth::user()->teamLeader;
+        $transactionFormField->status = $request->status;
+        $transactionFormField->executed_date = $request->executed_date;
+
+        $transactionFormField->save();
+
+        return redirect(route('home'));
+
     }
 
     /**
