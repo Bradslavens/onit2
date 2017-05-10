@@ -143,9 +143,13 @@ class FormController extends Controller
 
     }
 
-    public function getForms()
+    public function getForms(Request $request)
     {
-        $forms = \App\Form::where('user_id' , $this->user->teamLeader)
+
+        $forms = \App\Form::where([
+                ['user_id' , Auth::user()->teamLeader],
+                ['name','like', '%' . $request->term . '%'],
+            ])
             ->get(['id','name as value']);
 
         return $forms;

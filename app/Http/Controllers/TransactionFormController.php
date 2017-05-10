@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+
 use App\Custom\TeamLeader;
 
 class TransactionFormController extends Controller
@@ -36,7 +37,7 @@ class TransactionFormController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**

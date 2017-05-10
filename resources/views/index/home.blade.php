@@ -13,11 +13,12 @@
 
             <h1>Transaction List</h1>
             <a href="{{route('transaction.create')}}start" class="btn btn-default">Start A Transaction</a>
+            <br>
             <ul class="list-group">
             @foreach($transactions as $transaction)
               <li class="list-group-item">
                 <span class="badge">{{$transaction->status}}</span>
-                {{$transaction->name}} <a href="#">
+                {{$transaction->name}} <a href="{{route('transaction.form.select', ['id' => $transaction->id])}}">
                     Resume
                 </a>
               </li>

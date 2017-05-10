@@ -9,13 +9,10 @@ use App\Custom\TeamLeader;
 
 class TransactionController extends Controller
 {
-    protected $user;
 
     public function __construct()
     {
         $this->middleware('auth');
-
-        $this->user = \App\User::find(Auth::id());
     }
 
     /**
@@ -26,7 +23,7 @@ class TransactionController extends Controller
     public function index()
     {
 
-        $transactions =  \App\Transaction::where('teamLeader', $this->user->teamLeader)->get();
+        $transactions =  \App\Transaction::where('teamLeader', Auth::User()->teamLeader)->get();
 
         return view('dashboard', ['transactions' => $transactions] );
     }

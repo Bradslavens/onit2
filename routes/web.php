@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+// Route::get('/home', 'HomeController@index');
 
 //transaction
 Route::resource('transaction', 'TransactionController');
@@ -32,7 +32,7 @@ Route::get('admin/forms', 'FormController@getForms')->name('get.forms');
 
 //Transaction Forms
 Route::resource('transactionForm', 'TransactionFormController');
-Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@check');
+Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@check')->name('transaction.form.select');
 Route::get('transactionForms', 'TransactionFormController@getTransactionForms')->name('transaction.forms');
 
 //User Groups
@@ -40,6 +40,10 @@ Route::resource('admin/teammate', 'TeammateController');
 
 //Transactio form filed controller
 Route::resource('transactionFormField', 'TransactionFormFieldController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
