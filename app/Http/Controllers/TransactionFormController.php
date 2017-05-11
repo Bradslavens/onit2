@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Custom\TeamLeader;
+use Illuminate\Support\Facades\Log;
 
 class TransactionFormController extends Controller
 {
@@ -15,8 +14,6 @@ class TransactionFormController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-
-        $this->user = \App\User::find(Auth::id());
     }
 
 
@@ -97,8 +94,16 @@ class TransactionFormController extends Controller
     }
 
     public function check($transactionID)
-    {
-        return view('create.transactionForm', ['$transactionID']);
+    {   
+        $transaction = \App\Transaction::find($transactionID);
+
+        if($transaction->user_id !== Auth::user()->teamLeader)
+        {
+            session()->flash('message', 'Oops something went wrong. Please login in again. Thanks!');
+            return redirect('login');
+        } 
+
+        return view('create.transactionForm', ['transaction' => $transaction]);
     }
 
     public function getTransactionForms(Request $request)
@@ -106,7 +111,7 @@ class TransactionFormController extends Controller
         
         $transaction = \App\Transaction::find($request->id);
 
-        if($transaction->user_id === $this->user->teamLeader)
+        if($transaction->user_id === Auth::User()->teamLeader)
         {
             return $transaction->forms;
         }
@@ -115,5 +120,35 @@ class TransactionFormController extends Controller
             return redirect('login');
         }
         
+    }
+
+    public function getFields(Request $request)
+    {
+        // Is this a new form
+        // 
+        $teamLeader = Auth::user()->teamLeader;
+
+        $existingForm = \App\Form::where([
+                ['name', $request->form],
+                ['user_id', $teamLeader],
+            ])->get();
+
+        if($existingForm->count() > 1){
+
+            throw new Exception("Existing form count is wrong..");
+            
+            session()->flash('message', 'please contact administrator to check the log, form count is off. Thanks!');
+
+            return redirect('home');
+        }
+
+        if(!$existingForm->isEmpty() && $existingForm->count() === 1)
+        {
+            dd('form exists');
+        }
+        else
+        {
+            dd('form does not exist');
+        }
     }
 }

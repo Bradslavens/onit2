@@ -37,7 +37,7 @@ class TransactionController extends Controller
     {
         // get the sides id
         $menu = Menu::where('name', 'transactionSide')
-                    ->where('user_id', $this->user->teamLeader)
+                    ->where('user_id', Auth::user()->teamLeader)
                     ->first();
                     
         return view('transaction.start', ['menu' => $menu]);

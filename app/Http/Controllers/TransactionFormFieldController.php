@@ -35,7 +35,7 @@ class TransactionFormFieldController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

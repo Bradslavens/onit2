@@ -14,16 +14,22 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Check a Form</h1>
-            <form method="post" action="{{route('transactionForm.store')}}">
+            <form method="post" action="{{route('transaction.form.fields')}}">
                 {{ csrf_field() }}
 
-                {{-- add jquery autocomplete --}}
-                <div class="ui-widget">
-                      <label for="form">Form: </label>
-                      <input name="form" id="form">
-                </div>
+                    {{-- add jquery autocomplete --}}
+                    <div class="ui-widget form-group">
+                          <label for="form">Form: </label>
+                          <input class="form-control" name="form" id="form">
+                    </div>
 
-                <button type="submit" class="btn btn-default pull-right">Submit</button>
+                <input type="hidden" name="transaction" value="{{$transaction->id}}">
+
+                <div class="form-group">
+                    
+                    <button type="submit" class="btn btn-default pull-right">Submit</button>
+
+                </div>
                 
             </form>
         </div>
