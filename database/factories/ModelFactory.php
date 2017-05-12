@@ -61,6 +61,7 @@ $factory->define(App\Field::class, function (Faker\Generator $faker)
     'name' => $faker->name,
     'label' => $faker->word,
     'description' => $faker->sentence,
+    'type' => 'text',
     ];
 });
 

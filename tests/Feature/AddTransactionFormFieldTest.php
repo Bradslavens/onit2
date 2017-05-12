@@ -33,9 +33,28 @@ class AddTransactionFormFieldTest extends TestCase
 
        $field = \App\Field::find($form->fields()->first());
 
-       $response = $this->actingAs($user)->post(route('transactionFormField.store'), ['transaction_id' => $transaction['id'], 'form_id' => $form['id'], 'field_id' => $field['id'], 'value' => "123 Main", 'status' => true, 'executed_date' => time()]);
+       $response = $this->actingAs($user)->post(route('transactionFormFieldstore'), ['transaction_id' => $transaction['id'], 'form_id' => $form['id'], 'field_id' => $field['id'], 'value' => "123 Main", 'status' => true, 'executed_date' => time()]);
 
        $response->assertSee('Redirecting to')
             ->assertRedirect(route('home'));
+    }
+
+    public function testTransactionFormFieldCreate()
+    {
+      $user = factory(\App\User::class)->create(['role' => 'teammate', 'teamLeader' => 1]);
+
+      factory(\App\Form::class)->create(['user_id' => $user['teamLeader']])
+          ->each( function($f) use ($user)
+            {
+              $f->fields()->attach(factory(\App\Field::class, 5)->create(['user_id' => $user['teamLeader']]));
+            });
+
+      $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['teamLeader'], 'status' => 1]);
+
+      $form = \App\Form::first();
+
+      $response = $this->actingAs($user)->post(route('transactionformfieldscreate'), ['form'=> $form->name, 'transaction' => $transaction]);
+
+      $response->assertSee('Transaction:');
     }
 }

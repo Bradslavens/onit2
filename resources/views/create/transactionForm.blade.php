@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Check a Form</h1>
-            <form method="post" action="{{route('transaction.form.fields')}}">
+            <form method="post" action="{{route('transactionformfieldscreate')}}">
                 {{ csrf_field() }}
 
                     {{-- add jquery autocomplete --}}
@@ -23,7 +23,7 @@
                           <input class="form-control" name="form" id="form">
                     </div>
 
-                <input type="hidden" name="transaction" value="{{$transaction->id}}">
+                <input type="hidden" name="transaction" value="{{$transaction}}">
 
                 <div class="form-group">
                     

@@ -121,34 +121,4 @@ class TransactionFormController extends Controller
         }
         
     }
-
-    public function getFields(Request $request)
-    {
-        // Is this a new form
-        // 
-        $teamLeader = Auth::user()->teamLeader;
-
-        $existingForm = \App\Form::where([
-                ['name', $request->form],
-                ['user_id', $teamLeader],
-            ])->get();
-
-        if($existingForm->count() > 1){
-
-            throw new Exception("Existing form count is wrong..");
-            
-            session()->flash('message', 'please contact administrator to check the log, form count is off. Thanks!');
-
-            return redirect('home');
-        }
-
-        if(!$existingForm->isEmpty() && $existingForm->count() === 1)
-        {
-            dd('form exists');
-        }
-        else
-        {
-            dd('form does not exist');
-        }
-    }
 }

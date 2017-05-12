@@ -33,18 +33,15 @@ Route::get('admin/forms', 'FormController@getForms')->name('get.forms');
 //Transaction Forms
 Route::resource('transactionForm', 'TransactionFormController');
 Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@check')->name('transaction.form.select');
-Route::post('transactionForm/fields', 'TransactionFormController@getFields')->name('transaction.form.fields');
 Route::get('transactionForms', 'TransactionFormController@getTransactionForms')->name('transaction.forms');
 
 //User Groups
 Route::resource('admin/teammate', 'TeammateController');
 
 //Transactio form filed controller
-Route::resource('transactionFormField', 'TransactionFormFieldController');
-Auth::routes();
+Route::post('transactionFormfieldscreate', 'TransactionFormFieldController@create')->name('transactionformfieldscreate');
+Route::post('transactionFormfieldstore', 'TransactionFormFieldController@store')->name('transactionFormFieldstore');
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

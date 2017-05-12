@@ -33,9 +33,40 @@ class TransactionFormFieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        
+        // Is this a new form
+        // 
+        $teamLeader = Auth::user()->teamLeader;
+
+        $existingForm = \App\Form::where([
+                ['name', $request->form],
+                ['user_id', $teamLeader],
+            ])->get();
+
+        if($existingForm->count() > 1){
+
+            throw new Exception("Existing form count is wrong..");
+            
+            session()->flash('message', 'please contact administrator to check the log, form count is off. Thanks!');
+
+            return redirect('home');
+        }
+
+        if(!$existingForm->isEmpty() && $existingForm->count() === 1)
+        {
+            // get the fields and return the view
+            
+            session()->flash('message', 'Transaction: '. $request->transaction->name);
+
+            return view('create.transactionFormFields', ['fields' => $existingForm[0]->fields()] );
+        }
+
+        else
+
+        {
+            dd('form does not exist');
+        }
     }
 
     /**

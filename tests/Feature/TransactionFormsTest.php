@@ -13,11 +13,11 @@ class TransactionFormsTest extends TestCase
 
     public function testCreateTransactionForm()
     {
-        $user = factory(\App\User::class)->create(['role' => 'admin']);
+        $user = factory(\App\User::class)->create(['role' => 'admin', 'teamLeader' => 1]);
 
-        $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['id']]);
+        $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['teamLeader']]);
 
-        $response = $this->actingAs($user)->get('transactionForm/check/'. $transaction->id);
+        $response = $this->actingAs($user)->get(route('transaction.form.select', ['transactionID' => $transaction->id]));
 
         $response->assertSee('Check a Form');
 
