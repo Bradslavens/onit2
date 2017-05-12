@@ -14,11 +14,11 @@
                 @foreach($fields as $field)
                   <div class="form-group">
                     <label for="{{$field->name}}">{{$field->name}}</label>
-                    <input  name="{{$field->id}}" type="{{$filed->type}}" class="form-control" id="{{$field->id}}" placeholder="{{$field->name}}">
+                    <input  name="{{$field->id}}" type="{{$field->type}}" class="form-control" id="{{$field->id}}" placeholder="{{$field->name}}">
                   </div>
                 @endforeach
 
-                <button type="submit" class="btn btn-default">Start</button>
+                <button type="submit" class="btn btn-default">Submit</button>
             </form>
         </div>
     </div>
