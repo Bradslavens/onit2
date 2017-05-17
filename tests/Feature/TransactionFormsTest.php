@@ -23,4 +23,25 @@ class TransactionFormsTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testAddTransactionFormWithNewForm()
+    {
+        $user = factory(\App\User::class)->create(['role' => 'admin', 'teamLeader' => 1]);
+
+        $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['teamLeader']]);
+
+        $response = $this->actingAs($user)->post(route('transactionForm'), ['user_id' => $user['teamLeader'], 'form' => 'RPA- Residential Purchase Agreement', 'transaction_id' => $transaction['id']])
+    }
+
+    public function testAddTransactionFormWithExistingForm()
+    {
+        $user = factory(\App\User::class)->create(['role' => 'admin', 'teamLeader' => 1]);
+
+        $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['teamLeader']]);
+
+        $form = factory(\App\Form::class)->create(['user_id' => $user['teamLeader']])
+
+        $response = $this->actingAs($user)->post(route('transactionForm'), ['user_id' => $user['teamLeader'], 'form' => $form['name'], 
+            'transaction_id' => $transaction['id']])
+    }
 }
