@@ -11,7 +11,7 @@ class Form extends Model
         return $this->belongsToMany(Field::class);
     }
 
-    public function tranactions()
+    public function transactions()
     {
         return $this->belongsToMany(Transaction::class);
     }

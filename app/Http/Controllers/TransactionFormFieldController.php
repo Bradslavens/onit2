@@ -35,7 +35,9 @@ class TransactionFormFieldController extends Controller
      */
     public function create(Request $request)
     {
-        
+        $Form = \App\Form::where('name', $request->form)->first();
+
+        return view('create.transactionFormFields', ['fields' => $Form->fields]);
     }
 
     /**

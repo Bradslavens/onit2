@@ -46,9 +46,8 @@ class FormFieldsTest extends TestCase
 
         $field = factory(\App\Field::class)->create(['user_id' => 1]);
 
-        $response = $this->actingAs($user)->post('/admin/form', [
+        $response = $this->actingAs($user)->post(route('form.store'), [
             'name' => 'RPA',
-            'description' => 'Residential Purchase Agreement',
             'user_id' => $user['id'],
             'fields' => $field['id'],
             ]);
@@ -64,8 +63,7 @@ class FormFieldsTest extends TestCase
         $user = factory(\App\User::class)->create(['id'=> 1, 'role' => 'admin']);
 
         factory(\App\Form::class)->create([
-            'name' => 'RPA',
-            'description' => 'Residential Purchase Agreement',
+            'name' => 'RPA -Residential Purchase Agreement',
             'user_id' => $user['id'],
             ])
                 ->each(function ($form) use ($user){
@@ -84,7 +82,6 @@ class FormFieldsTest extends TestCase
 
         factory(\App\Form::class)->create([
             'name' => 'RPA',
-            'description' => 'Residential Purchase Agreement',
             'user_id' => $user['id'],
             ])
                 ->each(function ($form) use ($user){
@@ -94,7 +91,6 @@ class FormFieldsTest extends TestCase
 
         $response = $this->actingAs($user)->patch('/admin/form/1', [
             'name' => 'WPA',
-            'description' => 'Wood Destroying Pest Addendum',
             'user_id' => $user['id'],
             'fields' => [1,2,3],
             ]);
@@ -109,7 +105,6 @@ class FormFieldsTest extends TestCase
 
         factory(\App\Form::class)->create([
             'name' => 'RPA',
-            'description' => 'Residential Purchase Agreement',
             'user_id' => 1,
             ])
                 ->each(function ($form) use ($user){
@@ -119,7 +114,6 @@ class FormFieldsTest extends TestCase
 
         $response = $this->actingAs($user)->patch('/admin/form/1', [
             'name' => 'WPA',
-            'description' => 'Wood Destroying Pest Addendum',
             'user_id' => $user['id'],
             'fields' => [1,2,3],
             ]);

@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Transaction;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Custom\TeamLeader;
 use Illuminate\Support\Facades\Log;
 
-class TransactionFormController extends Controller
+class FormController extends Controller
 {
     protected $user;
 
@@ -34,7 +36,7 @@ class TransactionFormController extends Controller
      */
     public function create()
     {
-        //
+        // return view('create.transactionForm');
     }
 
     /**
@@ -66,7 +68,7 @@ class TransactionFormController extends Controller
         if(!$existingForm->isEmpty() && $existingForm->count() === 1)
         {
             // get the fields and return the view
-            $transaction = json_decode($request->transaction);
+            $transaction = \App\Transaction::find($request->transaction_id);
             
             session()->flash('message', 'Transaction: '. $transaction->name);
 
@@ -76,7 +78,15 @@ class TransactionFormController extends Controller
         else
 
         {
-            dd('form does not exist');
+            $form = new \App\Form;
+            $form->name = $request->form;
+            $form->user_id = $request->user_id;
+
+            $form->save();
+
+            $form->transactions()->attach($request->transaction_id);
+
+            return view('create.transactionFormFields', ['fields' => $form->fields]);
         }
     }
 

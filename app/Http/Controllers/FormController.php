@@ -55,7 +55,6 @@ class FormController extends Controller
         $form = new \App\Form;
 
         $form->name = $request->name;
-        $form->description = $request->description;
         $form->user_id = $this->user->teamLeader;
 
         $form->save();

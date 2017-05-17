@@ -55,7 +55,7 @@ class AddTransactionFormFieldTest extends TestCase
 
       $response = $this->actingAs($user)->post(route('transactionformfieldscreate'), ['form'=> $form->name, 'transaction' => $transaction]);
 
-      $response->assertSee('Transaction:')
+      $response->assertSee('Input Form Information')
         ->assertSee('<label for');
     }
 }

@@ -29,9 +29,9 @@ Route::resource('admin/form', 'FormController');
 Route::get('admin/forms', 'FormController@getForms')->name('get.forms');
 
 //Transaction Forms
-Route::resource('transactionForm', 'TransactionFormController');
-Route::get('transactionForm/check/{transactionID}', 'TransactionFormController@check')->name('transaction.form.select');
-Route::get('transactionForms', 'TransactionFormController@getTransactionForms')->name('transaction.forms');
+Route::resource('transaction/form', 'Transaction\FormController', ['as' => 'transaction']);
+Route::get('transaction/form/check/{transactionID}', 'Transaction\FormController@check')->name('transaction.form.select');
+Route::get('transactionForms', 'Transaction\FormController@getTransactionForms')->name('transaction.forms');
 
 //User Groups
 Route::resource('admin/teammate', 'TeammateController');
