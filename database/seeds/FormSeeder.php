@@ -11,6 +11,9 @@ class FormSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Form::class, 10)->create(['user_id' => 1]);
+        factory(\App\Form::class, 10)->create(['user_id' => 1])
+            ->each( function ($f) {
+                $f->fields()->attach(factory(\App\Field::class, 5) -> create(['user_id' => 1]));
+            });
     }
 }
