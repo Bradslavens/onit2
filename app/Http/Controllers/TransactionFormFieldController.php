@@ -48,6 +48,29 @@ class TransactionFormFieldController extends Controller
      */
     public function store(Request $request)
     {
+        // set signers
+        foreach ($request->signer as $key => $signerfield) 
+        {
+            switch ($key % 3) 
+            {
+                case 0:
+                    echo "name " . $signerfield . "<br>";
+                    break;
+                case 1:
+                    echo "role " . $signerfield . "<br>";
+                    break;
+                case 2:
+                    echo "signed " . $signerfield . "<br>";
+                    break;
+
+                default:
+                    break;
+            }
+
+        }
+
+        die();
+
         $transactionFormField = new \App\TransactionFormField;
 
         $transactionFormField->transaction_id = $request->transaction_id;

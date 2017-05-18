@@ -35,7 +35,20 @@
 <script>
 $(document).ready(function(){
 
-    var signerfield = "<div class='form-group'><label for='signerName'>Signers Name</label><input type='text' name='signerName' class='form-control' placeholder='Signer Name'></div><div class='form-group'><label for='signerRole'>Signers Role</label><select name='signerRole' class='form-control'><option value='Buyer'>Buyer</option><option value='Seller'>Seller</option><option value='ListngAgent'>Listing Agent</option><option value='SellingAgent'>Selling Agent</option><option value='Escrow'>Escrow</option></select></div><div class='checkbox'><label><input type='checkbox' name='signed'> Signed</label></div>";
+    var signerfield = "<div class='form-group'><label for='signerName'>Signers Name</label><input type='text' name='signer[]' class='form-control' placeholder='Signer Name'></div><div class='form-group'><label for='signerRole'>Signers Role</label><select name='signer[]' class='form-control'><option value='Buyer'>Buyer</option><option value='Seller'>Seller</option><option value='ListngAgent'>Listing Agent</option><option value='SellingAgent'>Selling Agent</option><option value='Escrow'>Escrow</option></select></div>";
+
+    signerfield +=            "<div class='checkbox'>";
+    signerfield +=                "<label>";
+    signerfield +=                    "<input type='checkbox' name='signer[]' value='yes'>";
+    signerfield +=                    "Yes";
+    signerfield +=                "</label>";
+    signerfield +=            "</div>";
+    signerfield +=            "<div class='checkbox'>";
+    signerfield +=                "<label>";
+    signerfield +=                    "<input type='checkbox' name='signer[]' value='no'>";
+    signerfield +=                    "No";
+    signerfield +=                "</label>";
+    signerfield +=            "</div>";
     
     $("#newSignerLink").click(function(){
         
