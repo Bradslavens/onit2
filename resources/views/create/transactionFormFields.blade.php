@@ -11,6 +11,9 @@
             <form method="post" action="{{route('transactionFormFieldstore')}}">
                 {{ csrf_field() }}
 
+                <input type="hidden" name="transactionID" value="{{$transactionID}}">
+                <input type="hidden" name="form" value="{{$form}}">
+
                 @foreach($fields as $field)
                   <div class="form-group">
                     <label for="{{$field->name}}">{{$field->name}}</label>
@@ -23,6 +26,12 @@
                     
                     <a href="#" id="newSignerLink">Add a Signer</a>
                 </fieldset>
+
+                <hr>
+                <div class="form-group">
+                    <label for="executed_date">Date Signed:</label>
+                    <input type="date" name="executed_date" class="form-control" required>
+                </div>
 
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>

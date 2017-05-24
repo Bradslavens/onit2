@@ -15,6 +15,8 @@ class CreateTransactionFormsTable extends Migration
     {
         Schema::create('transaction_forms', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('transaction_id')->unsigned();
+            $table->integer('form_id')->unsigned();
             $table->timestamps();
         });
     }

@@ -16,7 +16,7 @@ class CreateSignersTable extends Migration
         Schema::create('signers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('role');
+            $table->integer('transaction_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

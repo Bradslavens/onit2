@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Signer extends Model
 {
+    protected $fillable = ['name', 'transanction_id', 'user_id'];
+    
     //
     public function transactionForms()
     {

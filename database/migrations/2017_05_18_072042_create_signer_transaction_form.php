@@ -15,6 +15,8 @@ class CreateSignerTransactionForm extends Migration
     {
         Schema::create('signer_transaction_form', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('role')->nullable();
+            $table->string('status')->nullable();
             $table->integer('transaction_form_id')->unsigned();
             $table->integer('signer_id')->unsigned();
             $table->timestamps();

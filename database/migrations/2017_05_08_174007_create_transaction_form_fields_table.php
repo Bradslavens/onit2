@@ -19,8 +19,7 @@ class CreateTransactionFormFieldsTable extends Migration
             $table->integer('form_id');
             $table->integer('field_id');
             $table->string('value');
-            $table->boolean('status');
-            $table->integer('executed_date');
+            $table->string('executed_date');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
         });

@@ -68,11 +68,11 @@ class FormController extends Controller
         if(!$existingForm->isEmpty() && $existingForm->count() === 1)
         {
             // get the fields and return the view
-            $transaction = \App\Transaction::find($request->transaction_id);
+            $transactionID = \App\Transaction::find($request->transaction_id);
             
             session()->flash('message', 'Transaction: '. $transaction->name);
 
-            return view('create.transactionFormFields', ['fields' => $existingForm[0]->fields] );
+            return view('create.transactionFormFields', ['fields' => $existingForm[0]->fields, 'transactionID' => $transactionID] );
         }
 
         else
