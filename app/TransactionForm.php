@@ -12,6 +12,6 @@ class TransactionForm extends Model
 
     public function signers()
     {
-        return $this->belongsToMany(Signer::class);
+        return $this->belongsToMany(Signer::class)->withPivot('role');
     }
 }

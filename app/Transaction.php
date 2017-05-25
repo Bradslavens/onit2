@@ -15,4 +15,9 @@ class Transaction extends Model
     {
         return $this->belongsToMany(Form::class)->withPivot('id');
     }
+
+    public function signers()
+    {
+        return $this->hasMany(Signer::class);
+    }
 }

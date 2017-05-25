@@ -15,11 +15,27 @@ class TransactionDashboardTest extends TestCase
     {
         $user = factory(\App\User::class)->create(['teamLeader' => 1]);
 
-        $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['teamLeader']]);
+        // fill the transaction_form table
+        $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['teamLeader']]);   
 
+        $transaction->forms()->attach(factory(\App\Form::class, 5)->create(['user_id' => $user['teamLeader'] ]));
+
+        // for each of the new transaction forms add signers
+        // get forms
+        // for each transaction forms set signers
+        $transactionForms = \App\TransactionForm::where('transaction_id', $transaction['id'])->get();
+
+        foreach ($transactionForms as $transactionForm) 
+        {
+           // get the transaction from object
+           $tf = \App\TransactionForm::find($transactionForm->id);
+
+           $tf->signers()->save(factory(\App\Signer::class)->create(['user_id' => $user['teamLeader']]), ['role' => 'buyer']);
+        }
+             
         $response = $this->actingAs($user)->get(route('transaction.dashboard', ['id' => $transaction['id']]));
 
-        $response->assertSee($transaction->name);
+        $response->assertSee($transaction->name);  
 
 
     }

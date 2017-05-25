@@ -6,9 +6,9 @@
         <div class="col-md-8 col-md-offset-2">
             <h1>Dashboard</h1>
             <h2>{{$transaction->name}}</h2>
-
-            <div class="panel-group">
-                <div class="panel panel-default">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
                       <div class="panel-heading ">
                         <h3 class="panel-title">Property Location</h3>
                       </div>
@@ -25,17 +25,23 @@
                         </table>
                       </div>
                     </div>
+                    
+                </div> {{-- col-md-6 --}}
 
-                    <div class="panel panel-default">
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
                       <div class="panel-heading">
-                        <h3 class="panel-title">Contacts</h3>
+                        <h3 class="panel-title">Signers / Contacts</h3>
                       </div>
                       <div class="panel-body">
                         Panel content
                       </div>
                     </div>
+                </div> {{-- col md 4 --}}
 
-                    <div class="panel panel-default">
+                    <div class="col-md-6">
+
+                    <div class="panel panel-primary">
                       <div class="panel-heading">
                         <h3 class="panel-title">NHD Info</h3>
                       </div>
@@ -43,8 +49,10 @@
                         Panel content
                       </div>
                     </div>
+                </div> {{-- col md 4 --}}
 
-                    <div class="panel panel-default">
+                    <div class="col-md-6">
+                    <div class="panel panel-primary">
                       <div class="panel-heading">
                         <h3 class="panel-title">Homew Warranty Info</h3>
                       </div>
@@ -52,8 +60,10 @@
                         Panel content
                       </div>
                     </div>
+                </div> {{-- col md 4 --}}
 
-                    <div class="panel panel-default">
+                    <div class="col-md-6">
+                    <div class="panel panel-primary">
                       <div class="panel-heading">
                         <h3 class="panel-title">Important Dates</h3>
                       </div>
@@ -61,10 +71,9 @@
                         Panel content
                       </div>
                     </div>
-            </div>
-
-
-        </div>
+                </div> {{-- col md 4 --}}
+            </div> {{-- row --}}
+        </div> {{-- col-md-8 col-md-offset-2 --}}
     </div>
 </div>
 @endsection

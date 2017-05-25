@@ -19,7 +19,21 @@ class DashboardController extends Controller
 
         if($transaction->user_id === Auth::user()->teamLeader)
         {
-            return view('show.dashboard', ['transaction' => $transaction]);
+
+            $transactionForms = \App\TransactionForm::where('transaction_id', $id)->get();
+
+            dd($transactionForms);
+
+            foreach ($transactionForms as $transactionForm) 
+            {
+
+                dd($transactionForm->id);
+                $tf = \App\TransactionForm::find($transactionForm->id);
+
+                // dd($tf->signers);
+            }
+            
+            // return view('show.dashboard', ['transaction' => $transaction, 'contacts' => $signers]);
         }
         else
         {
