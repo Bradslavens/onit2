@@ -17,10 +17,21 @@
             <ul class="list-group">
             @foreach($transactions as $transaction)
               <li class="list-group-item">
-                <span class="badge">{{$transaction->status}}</span>
-                {{$transaction->name}} <a href="{{route('transaction.form.select', ['id' => $transaction->id])}}">
-                    Resume
-                </a>
+
+                {{$transaction->name}} 
+
+                <span class= "pull-right">
+                    @if($transaction->status == 1)
+                   <span class="label label-success">Active</span>
+                    @endif
+                    <a href="{{route('transaction.form.select', ['id' => $transaction->id])}}">
+                        <span class="label label-primary">Resume</span>
+                    </a>
+                    <a href="{{route('transaction.dashboard', ['id' => $transaction->id])}}">
+                        <span class="label label-info">Dashboard</span>
+                    </a>
+                </span>
+
               </li>
             @endforeach
             </ul>

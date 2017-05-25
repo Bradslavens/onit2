@@ -43,3 +43,5 @@ Route::post('transactionFormfieldstore', 'TransactionFormFieldController@store')
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/transaction/dashboard/{id}', 'Transaction\DashboardController@show')->name('transaction.dashboard');

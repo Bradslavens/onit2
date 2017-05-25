@@ -9,13 +9,12 @@ use App\Signer as Signer;
 class TransactionFormFieldController extends Controller
 {
 
-    protected $user;
 
     public function __construct()
     {
         $this->middleware('auth');
 
-        $this->user = \App\User::find(Auth::id());
+        // $this->middleware('transaction'); need to do this in refractor doesn't work with all routes
     }
 
     
@@ -40,7 +39,16 @@ class TransactionFormFieldController extends Controller
 
         $transaction = json_decode($request->transaction);
 
-        return view('create.transactionFormFields', ['fields' => $Form->fields, 'transactionID' => $transaction->id, 'form' => $Form->id]);
+        if($transaction->user_id === Auth::user()->teamLeader)
+        {
+            return view('create.transactionFormFields', ['fields' => $Form->fields, 'transactionID' => $transaction->id, 'form' => $Form->id]);
+        }
+        else
+        {
+            session()->flash('Oops, Something went wrong');
+            
+            return redirect('home');
+        }
     }
 
     /**

@@ -26,7 +26,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Transaction::class, function (Faker\Generator $faker) {
     
     return [
-        'name' => $faker->name,
+        'name' => $faker->streetAddress,
+        'address1' => $faker->streetAddress,
+        'city' => $faker->city,
+        'state' => $faker->state,
+        'zip' => $faker->postcode,
         'status' => 1,
     ];
 });

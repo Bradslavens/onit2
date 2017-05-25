@@ -68,7 +68,11 @@ class FormController extends Controller
         if(!$existingForm->isEmpty() && $existingForm->count() === 1)
         {
             // get the fields and return the view
-            $transaction = \App\Transaction::find($request->transaction_id);
+            $transaction = \App\Transaction::where(
+                [
+                    ['id', $request->transaction_id],
+                    ['user_id', Auth::id()],
+                ])->first();
             
             session()->flash('message', 'Transaction: '. $transaction->name);
 
@@ -80,13 +84,26 @@ class FormController extends Controller
         {
             $form = new \App\Form;
             $form->name = $request->form;
-            $form->user_id = $request->user_id;
+            $form->user_id = Auth::user()->teamLeader;
 
             $form->save();
 
-            $form->transactions()->attach($request->transaction_id);
+            $transaction = \App\Transaction::find($request->transaction_id);
 
-            return view('create.transactionFormFields', ['fields' => $form->fields, 'transactionID' => $request->transaction_id, 'form' => $form->id]);
+            if($transaction->user_id === Auth::user()->teamLeader)
+            {
+                $form->transactions()->attach($request->transaction_id);
+
+                return view('create.transactionFormFields', ['fields' => $form->fields, 'transactionID' => $request->transaction_id, 'form' => $form->id]);
+            }
+            else
+            {
+                session()->flash('message', 'Oops, We could not find that transaction :(.');
+
+                return redirect('home');
+            }
+
+           
         }
     }
 
@@ -159,7 +176,9 @@ class FormController extends Controller
         }
         else
         {
-            return redirect('login');
+            session()->flash('message', 'Oops, We could not find that transaction :(.');
+
+            return redirect('home');
         }
         
     }
