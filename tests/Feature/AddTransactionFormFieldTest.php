@@ -33,7 +33,7 @@ class AddTransactionFormFieldTest extends TestCase
 
        $field = \App\Field::find($form->fields()->first());
 
-       $response = $this->actingAs($user)->post(route('transactionFormFieldstore'), ['transaction_id' => $transaction['id'], 'form_id' => $form['id'], 'field_id' => $field['id'], 'value' => "123 Main", 'status' => true, 'executed_date' => time()]);
+       $response = $this->actingAs($user)->post(route('transactionFormFieldstore'), ['transactionID' => $transaction['id'], 'form' => $form['name'], $field['id'] => $field['form_id'], 'value' => "123 Main", 'executed_date' => time(), 'signer' => ['name', 'role', true]]);
 
        $response->assertSee('Redirecting to')
             ->assertRedirect(route('home'));

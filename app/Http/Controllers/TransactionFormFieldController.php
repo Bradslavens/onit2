@@ -40,7 +40,7 @@ class TransactionFormFieldController extends Controller
 
         $transaction = json_decode($request->transaction);
 
-        return view('create.transactionFormFields', ['fields' => $Form->fields, 'transactionID' => $transaction->id, 'form' => $request->form]);
+        return view('create.transactionFormFields', ['fields' => $Form->fields, 'transactionID' => $transaction->id, 'form' => $Form->id]);
     }
 
     /**

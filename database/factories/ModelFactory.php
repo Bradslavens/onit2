@@ -68,7 +68,6 @@ $factory->define(App\Signer::class, function (Faker\Generator $faker)
 {
     return [
     'name' => $faker->name,
-    'role' => 'buyer',
     ];
 });
 
