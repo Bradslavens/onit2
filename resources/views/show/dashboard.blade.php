@@ -34,7 +34,20 @@
                         <h3 class="panel-title">Signers / Contacts</h3>
                       </div>
                       <div class="panel-body">
-                        Panel content
+                        <table class="table">
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Role
+                            </th>
+                            @foreach($signers as $signer)
+                                <tr>
+                                    <td>{{$signer['name']}}</td>
+                                    <td>{{$signer['role']}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
                       </div>
                     </div>
                 </div> {{-- col md 4 --}}

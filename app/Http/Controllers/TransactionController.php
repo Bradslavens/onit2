@@ -40,7 +40,7 @@ class TransactionController extends Controller
                     ->where('user_id', Auth::user()->teamLeader)
                     ->first();
                     
-        return view('transaction.start', ['menu' => $menu]);
+        return view('create.transaction', ['menu' => $menu]);
     }
 
     /**
@@ -51,7 +51,22 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = new \App\Transaction;
+
+        $transaction->address1 = $request->address1;
+        $transaction->city = $request->city;
+        $transaction->state = $request->state;
+        $transaction->zip = $request->zip;
+        $transaction->user_id = Auth::id();
+
+        $transaction->save();
+
+        session()->flash('message', 'Transaction'. $transaction->address1. ' added successfully!');
+        
+        // event('addedTransaction');
+        
+        return redirect('home');
+
     }
 
     /**

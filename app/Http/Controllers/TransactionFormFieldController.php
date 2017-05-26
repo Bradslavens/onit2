@@ -70,7 +70,7 @@ class TransactionFormFieldController extends Controller
 
         // request form is the name of the form, get the id to attach
         // 
-        $form = \App\Form::where('name', $request->form)->first();
+        $form = \App\Form::find($request->form);
 
         $transaction->forms()->attach($form->id);
 
@@ -98,8 +98,9 @@ class TransactionFormFieldController extends Controller
                     case 2:
                         $signer_ra['signed'] = $signerfield;
                         
-                        Signer::create(['user_id' => Auth::user()->teamLeader, 'transaction_id' => $request->transactionID, 'name' => $signer_ra['name']])
-                        ->transactionForms()->attach($transactionForm->id);
+                        $s = Signer::create(['user_id' => Auth::user()->teamLeader, 'transaction_id' => $request->transactionID, 'name' => $signer_ra['name']]);
+
+                        $s->transactionForms()->attach($transactionForm->id, ['role' => $signer_ra['role'], 'status' => $signer_ra['signed']]);
 
                         break;
 

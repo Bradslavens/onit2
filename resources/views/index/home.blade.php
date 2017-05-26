@@ -12,13 +12,13 @@
             @endif
 
             <h1>Transaction List</h1>
-            <a href="{{route('transaction.create')}}start" class="btn btn-default">Start A Transaction</a>
+            <a href="{{route('transaction.create')}}" class="btn btn-default">Start A Transaction</a>
             <br>
             <ul class="list-group">
             @foreach($transactions as $transaction)
               <li class="list-group-item">
 
-                {{$transaction->name}} 
+                {{$transaction->address1}} 
 
                 <span class= "pull-right">
                     @if($transaction->status == 1)

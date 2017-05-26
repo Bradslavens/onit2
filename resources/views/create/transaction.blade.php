@@ -9,8 +9,23 @@
                 {{ csrf_field() }}
 
                   <div class="form-group">
-                    <label for="name">Transaction Name or Address</label>
-                    <input  name="name" type="text" class="form-control" id="name" placeholder="Transaction Name or Address">
+                    <label for="address1">Address</label>
+                    <input  name="address1" type="text" class="form-control" id="address1" placeholder="Address" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="city">City</label>
+                    <input  name="city" type="text" class="form-control" id="city" placeholder="City" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="state">State</label>
+                    <input  name="state" type="text" class="form-control" id="state" placeholder="State" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="zip">Zip</label>
+                    <input  name="zip" type="text" class="form-control" id="zip" placeholder="Zip" required>
                   </div>
 
                 <div class="form-group">

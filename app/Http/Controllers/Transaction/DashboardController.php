@@ -22,18 +22,25 @@ class DashboardController extends Controller
 
             $transactionForms = \App\TransactionForm::where('transaction_id', $id)->get();
 
-            dd($transactionForms);
+            $signer_array = [];
+            $count = 0;
 
             foreach ($transactionForms as $transactionForm) 
             {
 
-                dd($transactionForm->id);
                 $tf = \App\TransactionForm::find($transactionForm->id);
 
-                // dd($tf->signers);
+                foreach ($tf->signers as $signer) 
+                {
+
+                    $signer_array[$count]['role'] = $signer->pivot->role;
+                    $signer_array[$count]['name'] = $signer->name;
+
+                    $count++;
+                }
             }
             
-            // return view('show.dashboard', ['transaction' => $transaction, 'contacts' => $signers]);
+            return view('show.dashboard', ['transaction' => $transaction, 'signers' => $signer_array]);
         }
         else
         {

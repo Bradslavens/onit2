@@ -26,4 +26,9 @@ class AddATransactionTest extends TestCase
 
         $response->assertSee('Start a Transaction');
     }
+
+    public function testTransactionStore()
+    {
+        dd('test add a transaction');
+    }
 }
