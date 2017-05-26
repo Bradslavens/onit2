@@ -74,16 +74,15 @@ class FormController extends Controller
                     ['user_id', Auth::id()],
                 ])->first();
             
-            session()->flash('message', 'Transaction: '. $transaction->name);
+            session()->flash('message', 'Transaction: '. $transaction->address1);
 
             return view('create.transactionFormFields', ['fields' => $existingForm[0]->fields, 'transactionID' => $transaction->id, 'form' => $existingForm[0]->id] );
         }
 
         else
-
         {
             $form = new \App\Form;
-            $form->name = $request->form;
+            $form->address1 = $request->form;
             $form->user_id = Auth::user()->teamLeader;
 
             $form->save();
@@ -93,6 +92,8 @@ class FormController extends Controller
             if($transaction->user_id === Auth::user()->teamLeader)
             {
                 $form->transactions()->attach($request->transaction_id);
+
+                session()->flash('message', 'Transaction: '. $transaction->address1);
 
                 return view('create.transactionFormFields', ['fields' => $form->fields, 'transactionID' => $request->transaction_id, 'form' => $form->id]);
             }
@@ -152,6 +153,7 @@ class FormController extends Controller
         //
     }
 
+
     public function check($transactionID)
     {   
         $transaction = \App\Transaction::find($transactionID);
@@ -164,6 +166,8 @@ class FormController extends Controller
 
         return view('create.transactionForm', ['transaction' => $transaction]);
     }
+
+
 
     public function getTransactionForms(Request $request)
     {
