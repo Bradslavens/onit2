@@ -67,12 +67,9 @@ class FormController extends Controller
 
         if(!$existingForm->isEmpty() && $existingForm->count() === 1)
         {
-            // get the fields and return the view
-            $transaction = \App\Transaction::where(
-                [
-                    ['id', $request->transaction_id],
-                    ['user_id', Auth::id()],
-                ])->first();
+
+            // json decode transaction 
+            $transaction = json_decode($request->transaction);
             
             session()->flash('message', 'Transaction: '. $transaction->address1);
 
@@ -87,15 +84,15 @@ class FormController extends Controller
 
             $form->save();
 
-            $transaction = \App\Transaction::find($request->transaction_id);
+            $transaction = json_decode($request->transaction);
 
             if($transaction->user_id === Auth::user()->teamLeader)
             {
-                $form->transactions()->attach($request->transaction_id);
+                $form->transactions()->attach($transaction->id);
 
                 session()->flash('message', 'Transaction: '. $transaction->address1);
 
-                return view('create.transactionFormFields', ['fields' => $form->fields, 'transactionID' => $request->transaction_id, 'form' => $form->id]);
+                return view('create.transactionFormFields', ['fields' => $form->fields, 'transactionID' => $transaction->id, 'form' => $form->id]);
             }
             else
             {
@@ -104,8 +101,8 @@ class FormController extends Controller
                 return redirect('home');
             }
 
-           
         }
+
     }
 
     /**

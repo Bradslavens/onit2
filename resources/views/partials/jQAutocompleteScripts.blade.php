@@ -12,6 +12,9 @@ function log( message ) {
 
 $( "#form" ).autocomplete({
   source: function( request, response ) {
+    
+    console.log("clicked");
+
     $.ajax( {
       url: base_url + "/admin/forms",
       dataType: "json",

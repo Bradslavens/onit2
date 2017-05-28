@@ -85,7 +85,10 @@ class FieldController extends Controller
 
     public function getFields(Request $request)
     {
-        $fields = \App\Field::where('user_id', Auth::user()->teamLeader)->get(['id', 'name as value']);
+        $fields = \App\Field::where([
+                ['user_id', Auth::user()->teamLeader],
+                ['name','like','%' . $request->term . '%'],
+            ])->get(['id', 'name as value']);
 
         return $fields;
     }
