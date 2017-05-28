@@ -45,3 +45,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/transaction/dashboard/{id}', 'Transaction\DashboardController@show')->name('transaction.dashboard');
+
+Route::resource('field', 'FieldController');
+Route::get('fieldList', 'FieldController@getFields')->name('fieldList');

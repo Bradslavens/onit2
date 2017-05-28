@@ -82,7 +82,7 @@ class FormController extends Controller
         else
         {
             $form = new \App\Form;
-            $form->address1 = $request->form;
+            $form->name = $request->form;
             $form->user_id = Auth::user()->teamLeader;
 
             $form->save();

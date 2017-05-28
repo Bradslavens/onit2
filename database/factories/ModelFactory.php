@@ -60,7 +60,7 @@ $factory->define(App\Item::class, function (Faker\Generator $faker)
 $factory->define(App\Field::class, function (Faker\Generator $faker)
 {
     return [
-    'name' => $faker->name,
+    'name' => $faker->word,
     'label' => $faker->word,
     'description' => $faker->sentence,
     'type' => 'text',
