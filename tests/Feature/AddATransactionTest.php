@@ -29,6 +29,10 @@ class AddATransactionTest extends TestCase
 
     public function testTransactionStore()
     {
-        dd('test add a transaction');
+        $user = factory(\App\User::class)->create(['teamLeader'=> 1]);
+
+        $response = $this->actingAs($user)->post(route('transaction.store', ['address1' => '123 Main' , 'city' => 'San Diego' , 'state' => 'CA' , 'zip' => '1111111' , 'user_id'=> $user['id']]));
+
+        $response->assertSee('Redirecting to ');
     }
 }

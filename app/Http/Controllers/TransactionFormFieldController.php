@@ -61,7 +61,6 @@ class TransactionFormFieldController extends Controller
     { 
         // set the array to hold signer info from request
         $signer_ra = [];
-
         // Add transaction form
         //
         $transaction = \App\Transaction::find($request->transactionID);
@@ -74,8 +73,6 @@ class TransactionFormFieldController extends Controller
             return redirect('home');
         }
 
-
-        // request form is the name of the form, get the id to attach
         // 
         $form = \App\Form::find($request->form);
 

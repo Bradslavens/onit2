@@ -76,5 +76,17 @@ $factory->define(App\Signer::class, function (Faker\Generator $faker)
 
 
 
+$factory->define(App\TransactionFormField::class, function (Faker\Generator $faker)
+{
+    return [
+    'form_id' => rand(0,100),
+    'value' => $faker->word,
+    'executed_date' => $faker->date,
+    ];
+});
+
+
+
+
 
 

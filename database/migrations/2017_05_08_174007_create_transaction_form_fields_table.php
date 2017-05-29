@@ -15,9 +15,9 @@ class CreateTransactionFormFieldsTable extends Migration
     {
         Schema::create('transaction_form_fields', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('transaction_id');
-            $table->integer('form_id');
-            $table->integer('field_id');
+            $table->integer('transaction_id')->unsigned();
+            $table->integer('form_id')->unsigned();
+            $table->integer('field_id')->unsigned();
             $table->string('value');
             $table->string('executed_date');
             $table->integer('user_id')->unsigned();

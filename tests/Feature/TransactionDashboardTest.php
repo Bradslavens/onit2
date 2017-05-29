@@ -13,7 +13,7 @@ class TransactionDashboardTest extends TestCase
 
     public function testRouteToDashboard()
     {
-        $user = factory(\App\User::class)->create(['teamLeader' => 1]);
+        $user = factory(\App\User::class)->create(['teamLeader' => 1, 'role' => 'admin']);
 
         // fill the transaction_form table
         $transaction = factory(\App\Transaction::class)->create(['user_id' => $user['teamLeader']]);   
@@ -32,10 +32,25 @@ class TransactionDashboardTest extends TestCase
 
            $tf->signers()->save(factory(\App\Signer::class)->create(['user_id' => $user['teamLeader']]), ['role' => 'buyer']);
         }
+
+        $fields = factory(\App\Field::class, 5)
+            ->create(['user_id' => $user['teamLeader']])
+            ->each( function ($f) use ($transaction, $user)
+            {
+                $i = 0;
+                
+                while($i < 5)
+                {
+
+                    $f->transactionFormFields()->save(factory(\App\TransactionFormField::class)->make(['transaction_id' => $transaction['id'], 'user_id' => $user['teamLeader']]));
+
+                    $i++;
+                }
+            });
              
         $response = $this->actingAs($user)->get(route('transaction.dashboard', ['id' => $transaction['id']]));
 
-        $response->assertSee($transaction->name);  
+        $response->assertSee($transaction->address1);  
 
 
     }

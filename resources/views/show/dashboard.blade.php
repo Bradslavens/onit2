@@ -13,7 +13,7 @@
                         <h3 class="panel-title">Property Location</h3>
                       </div>
                       <div class="panel-body">
-                        <table class="table">
+                        <table class="table table-striped">
                             <tr>
                                 <td>Address 1:</td>
                                 <td>{{$transaction->address1}}</td>
@@ -34,7 +34,7 @@
                         <h3 class="panel-title">Signers / Contacts</h3>
                       </div>
                       <div class="panel-body">
-                        <table class="table">
+                        <table class="table table-striped">
                             <th>
                                 Name
                             </th>
@@ -50,7 +50,7 @@
                         </table>
                       </div>
                     </div>
-                </div> {{-- col md 4 --}}
+                </div> {{-- col md 6 --}}
 
                     <div class="col-md-6">
 
@@ -62,9 +62,9 @@
                         Panel content
                       </div>
                     </div>
-                </div> {{-- col md 4 --}}
+                </div> {{-- col md 6 --}}
 
-                    <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="panel panel-primary">
                       <div class="panel-heading">
                         <h3 class="panel-title">Homew Warranty Info</h3>
@@ -73,9 +73,9 @@
                         Panel content
                       </div>
                     </div>
-                </div> {{-- col md 4 --}}
+                </div> {{-- col md 6 --}}
 
-                    <div class="col-md-6">
+                <div class="col-md-6">
                     <div class="panel panel-primary">
                       <div class="panel-heading">
                         <h3 class="panel-title">Important Dates</h3>
@@ -84,7 +84,36 @@
                         Panel content
                       </div>
                     </div>
-                </div> {{-- col md 4 --}}
+                </div> {{-- col md 6 --}}
+
+                <div class="col-md-6">
+                    <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Current Field Values</h3>
+                      </div>
+                      <div class="panel-body">
+                        <table class="table table-striped">
+                          <th>
+                            <td>Name</td>
+                            <td>Value</td>
+                          </th>
+
+                          @foreach($fields as $field)
+                          <?php $field = $field->sortBy('executed_date')->last(); ?>
+                          <tr>
+                            <td><strong>{{$field->field->name}}</strong></td>
+                            <td>{{$field->value}}</td>
+                          </tr>
+
+                          @endforeach
+                          
+                        </table>
+                      </div>
+                    </div>
+                </div> {{-- col md 6 --}}
+
+
+
             </div> {{-- row --}}
         </div> {{-- col-md-8 col-md-offset-2 --}}
     </div>

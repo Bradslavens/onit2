@@ -10,4 +10,9 @@ class Field extends Model
     {
         return $this->belongsToMany(Form::class);
     }
+
+    public function transactionFormFields()
+    {
+        return $this->hasMany(TransactionFormField::class);
+    }
 }

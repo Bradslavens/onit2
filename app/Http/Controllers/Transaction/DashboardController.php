@@ -39,8 +39,15 @@ class DashboardController extends Controller
                     $count++;
                 }
             }
+
+            // set the fields
             
-            return view('show.dashboard', ['transaction' => $transaction, 'signers' => $signer_array]);
+            $fields = \App\TransactionFormField::where([
+                ['transaction_id', $id],
+                ['user_id', Auth::user()->teamLeader],
+                ])->get()->groupBy('field_id');
+            
+            return view('show.dashboard', ['transaction' => $transaction, 'signers' => $signer_array, 'fields' => $fields]);
         }
         else
         {
