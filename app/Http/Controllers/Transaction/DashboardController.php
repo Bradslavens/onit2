@@ -46,8 +46,42 @@ class DashboardController extends Controller
                 ['transaction_id', $id],
                 ['user_id', Auth::user()->teamLeader],
                 ])->get()->groupBy('field_id');
+
+            $dashFields['nhd'] = "NA";
+            $dashFields['hw'] = "NA";
+            $dashFields['hwCompany'] = "NA";
+            $dashFields['hwAmount'] = "NA";
+            $dashFields['hwIncludes'] = "NA";
+            $dashFields['dates'] = [];
+
+            foreach ($fields as $field) 
+            {
+                $sorted = $field->sortBy('executed_date')->last();
+
+                if(stripos($sorted->field->name, "nhd") !== false)
+                {
+                    $dashFields['nhd'] = $sorted->value;
+                }
+                elseif (stripos($sorted->field->name, "home warranty company") !== false) 
+                {
+                    $dashFields['hwCompany'] = $sorted->value;
+                }
+                elseif (stripos($sorted->field->name, "home warranty amount") !== false) 
+                {
+                    $dashFields['hwAmount'] = $sorted->value;
+                }
+                elseif (stripos($sorted->field->name, "home warranty includes") !== false) 
+                {
+                    $dashFields['hwIncludes'] = $sorted->value;
+                }
+                elseif (stripos($sorted->field->name, "date") !== false) 
+                {
+                    $dashFields['dates'][$sorted->field->name] = $sorted->value;
+                }
+
+            }
             
-            return view('show.dashboard', ['transaction' => $transaction, 'signers' => $signer_array, 'fields' => $fields]);
+            return view('show.dashboard', ['transaction' => $transaction, 'signers' => $signer_array, 'fields' => $fields, 'dashFields' => $dashFields]);
         }
         else
         {

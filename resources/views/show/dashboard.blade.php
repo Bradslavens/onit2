@@ -15,11 +15,11 @@
                       <div class="panel-body">
                         <table class="table table-striped">
                             <tr>
-                                <td>Address 1:</td>
+                                <td><strong>Address</strong></td>
                                 <td>{{$transaction->address1}}</td>
                             </tr>
                             <tr>
-                                <td>City, State, Zip:</td>
+                                <td><strong>City, State, Zip</strong></td>
                                 <td>{{$transaction->city}}, {{$transaction->state}} &nbsp;&nbsp; {{$transaction->zip}}</td>
                             </tr>
                         </table>
@@ -36,14 +36,14 @@
                       <div class="panel-body">
                         <table class="table table-striped">
                             <th>
-                                Name
+                                strong
                             </th>
                             <th>
                                 Role
                             </th>
                             @foreach($signers as $signer)
                                 <tr>
-                                    <td>{{$signer['name']}}</td>
+                                    <td><strong>{{$signer['name']}}</strong></td>
                                     <td>{{$signer['role']}}</td>
                                 </tr>
                             @endforeach
@@ -59,7 +59,20 @@
                         <h3 class="panel-title">NHD Info</h3>
                       </div>
                       <div class="panel-body">
-                        Panel content
+                        <table class="table table-striped">
+                          <tr>
+                            <td><strong>NHD Provider</strong></td>
+                            <td>{{$dashFields['nhd']}}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>Address</strong></td>
+                              <td>{{$transaction->address1}}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>City, State, Zip</strong></td>
+                              <td>{{$transaction->city}}, {{$transaction->state}} &nbsp;&nbsp; {{$transaction->zip}}</td>
+                          </tr>
+                        </table>
                       </div>
                     </div>
                 </div> {{-- col md 6 --}}
@@ -70,7 +83,28 @@
                         <h3 class="panel-title">Homew Warranty Info</h3>
                       </div>
                       <div class="panel-body">
-                        Panel content
+                        <table class="table table-striped">
+                          <tr>
+                            <td><strong>Home Warranty Company</strong></td>
+                            <td>{{$dashFields['hwCompany']}}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Amount</strong></td>
+                            <td>{{$dashFields['hwAmount']}}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>Includes</strong></td>
+                            <td>{{$dashFields['hwIncludes']}}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>Address</strong></td>
+                              <td>{{$transaction->address1}}</td>
+                          </tr>
+                          <tr>
+                              <td><strong>City, State, Zip</strong></td>
+                              <td>{{$transaction->city}}, {{$transaction->state}} &nbsp;&nbsp; {{$transaction->zip}}</td>
+                          </tr>
+                        </table>
                       </div>
                     </div>
                 </div> {{-- col md 6 --}}
@@ -81,7 +115,14 @@
                         <h3 class="panel-title">Important Dates</h3>
                       </div>
                       <div class="panel-body">
-                        Panel content
+                        <table class="table table-striped">
+                          @foreach($dashFields['dates'] as $key => $date)
+                          <tr>
+                            <td><strong>{{$key}}</strong></td>
+                            <td>{{$date}}</td>
+                          </tr>
+                          @endforeach
+                        </table>
                       </div>
                     </div>
                 </div> {{-- col md 6 --}}
@@ -94,8 +135,10 @@
                       <div class="panel-body">
                         <table class="table table-striped">
                           <th>
-                            <td>Name</td>
-                            <td>Value</td>
+                            Name
+                          </th>
+                          <th>
+                            Value
                           </th>
 
                           @foreach($fields as $field)
