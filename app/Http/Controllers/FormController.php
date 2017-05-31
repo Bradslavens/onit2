@@ -149,6 +149,10 @@ class FormController extends Controller
                 ['user_id' , Auth::user()->teamLeader],
                 ['name','like', '%' . $request->term . '%'],
             ])
+            ->orWhere([
+                ['user_id' , 0],
+                ['name','like', '%' . $request->term . '%'],
+            ])
             ->get(['id','name as value']);
 
         return $forms;
