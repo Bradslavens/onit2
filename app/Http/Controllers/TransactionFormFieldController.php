@@ -188,6 +188,24 @@ class TransactionFormFieldController extends Controller
 
                         $s->transactionForms()->attach($transactionForm->id, ['role' => $signer_ra['role'], 'status' => $signer_ra['signed']]);
 
+                        $signer = \App\Signer::where('name',$signer_ra['role'])->first();
+
+                        if($signer == null)
+                        {
+                            $signer = new \App\Signer;
+
+                            $signer->name = $signer_ra['role'];
+
+                            $signer->user_id = Auth::user()->teamLeader;
+
+                            $signer->save();
+
+                            $form = \App\Form::find($form->id);
+
+                            $form->signers()->attach($signer->id);
+
+                        }
+
                         break;
 
                     default:

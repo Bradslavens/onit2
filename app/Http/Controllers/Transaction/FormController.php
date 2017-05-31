@@ -54,11 +54,12 @@ class FormController extends Controller
         $existingForm = \App\Form::where([
                 ['name', $request->form],
                 ['user_id', $teamLeader],
+            ])->orWhere([
+                ['name', $request->form],
+                ['user_id', 0],
             ])->get();
 
         if($existingForm->count() > 1){
-
-            throw new Exception("Existing form count is wrong..");
             
             session()->flash('message', 'please contact administrator to check the log, form count is off. Thanks!');
 

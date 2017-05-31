@@ -18,4 +18,9 @@ class Signer extends Model
     {
         return $this->belongsTo(Transaction::class);
     }
+
+    public function forms()
+    {
+        return $this->belongsTo(Form::class);
+    }
 }
