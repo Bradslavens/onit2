@@ -35,9 +35,11 @@ class TransactionFormFieldController extends Controller
      */
     public function create(Request $request)
     {
+
         $Form = \App\Form::where('name', $request->form)->first();
 
         $transaction = json_decode($request->transaction);
+
 
         if($transaction->user_id === Auth::user()->teamLeader)
         {
@@ -183,11 +185,25 @@ class TransactionFormFieldController extends Controller
                         break;
                     case 2:
                         $signer_ra['signed'] = $signerfield;
+
+                        // see if signer already exists
+                        $s = \App\Signer::where(
+                            [
+                                ['user_id', Auth::user()->teamLeader],
+                                ['transaction_id', $request->transactionID],
+                                ['name' , $signer_ra['name']],
+                            ])
+                            ->first();
+
+                        if($s == null)
+                        {
+                            $s = Signer::create(['user_id' => Auth::user()->teamLeader, 'transaction_id' => $request->transactionID, 'name' => $signer_ra['name']]);
+                        }
                         
-                        $s = Signer::create(['user_id' => Auth::user()->teamLeader, 'transaction_id' => $request->transactionID, 'name' => $signer_ra['name']]);
+                        $s->transactionForms()->attach($transactionForm->id, ['executed_date' => $request->executed_date,  'role' => $signer_ra['role'], 'status' => $signer_ra['signed']]);
 
-                        $s->transactionForms()->attach($transactionForm->id, ['role' => $signer_ra['role'], 'status' => $signer_ra['signed']]);
-
+                        // this adds a new role to the signer list for form_signer if the role does not exist for this form
+                        // 
                         $signer = \App\Signer::where('name',$signer_ra['role'])->first();
 
                         if($signer == null)

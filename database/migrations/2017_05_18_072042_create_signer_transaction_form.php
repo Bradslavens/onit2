@@ -19,6 +19,7 @@ class CreateSignerTransactionForm extends Migration
             $table->string('status')->nullable();
             $table->integer('transaction_form_id')->unsigned();
             $table->integer('signer_id')->unsigned();
+            $table->string('executed_date');
             $table->timestamps();
         });
     }

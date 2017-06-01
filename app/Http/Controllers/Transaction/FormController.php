@@ -68,13 +68,49 @@ class FormController extends Controller
 
         if(!$existingForm->isEmpty() && $existingForm->count() === 1)
         {
-
+            /// form already exists
             // json decode transaction 
             $transaction = json_decode($request->transaction);
-            
+
+            // get the current transaction form 
+            $transactionForm = \App\TransactionForm::where('form_id' , $existingForm[0]->id)->first();
+
+            // set the signers array
+            $signers_ra = [];
+
+
+            // match the existing form signers 'name' (is role) with the transaction form signers role if == add to the signer's array
+            if(isset($transactionForm->signers))
+            {
+                // make an array to compare signers
+                $raToCompareSigners = [];
+
+                foreach ( $transactionForm->signers->toArray() as $signer) 
+                {
+                    
+                    if(!in_array($signer['pivot']['signer_id'], $raToCompareSigners))
+                    {
+                        $efs = $existingForm[0]->signers;
+
+                        foreach ($efs as $ef) 
+                        {
+                            if($ef['name'] == $signer['pivot']['role'])
+                            {
+                                $signers_ra[] = $signer ;
+                            }
+                        }
+
+                    }
+                    foreach ($signers_ra as $sr) 
+                    {
+                        $raToCompareSigners[] = $sr['pivot']['signer_id']; 
+                    }
+                }
+            }
+
             session()->flash('message', 'Transaction: '. $transaction->address1);
 
-            return view('create.transactionFormFields', ['fields' => $existingForm[0]->fields, 'transactionID' => $transaction->id, 'form' => $existingForm[0]->id] );
+            return view('create.transactionFormFields', ['fields' => $existingForm[0]->fields, 'transactionID' => $transaction->id, 'form' => $existingForm[0]->id, 'signers' => $signers_ra] );
         }
 
         else

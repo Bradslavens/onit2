@@ -47,15 +47,40 @@
                     <legend id="signerLegend")>Form Signers</legend>
                     
                     <a href="#" id="newSignerLink">Add a Signer</a>
-                </fieldset>
+                    
+                    @if(isset($signers))
+                        @foreach($signers as $signer)
 
-                <hr>
+                        <br>{{$signer['name']}} - {{$signer['pivot']['role']}} <br>
+                          <input type="hidden" name="signer[]" value="{{$signer['name']}}">
+                          <input type="hidden" name="signer[]" value="{{$signer['pivot']['role']}}">
+
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="signer[]" value="yes"> 
+                              signed
+                            </label>
+                          </div>
+
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="signer[]" value="no"> 
+                              not signed
+                            </label>
+                          </div>
+
+                        @endforeach
+
+                        </div>
+                    @endif
+                </fieldset>
+                
                 <div class="form-group">
                     <label for="executed_date">Date Signed:</label>
                     <input type="date" name="executed_date" class="form-control" required>
                 </div>
 
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default ">Submit</button>
             </form>
         </div>
     </div>
