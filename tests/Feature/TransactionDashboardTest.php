@@ -30,7 +30,7 @@ class TransactionDashboardTest extends TestCase
            // get the transaction from object
            $tf = \App\TransactionForm::find($transactionForm->id);
 
-           $tf->signers()->save(factory(\App\Signer::class)->create(['user_id' => $user['teamLeader']]), ['role' => 'buyer']);
+           $tf->signers()->save(factory(\App\Signer::class)->create(['user_id' => $user['teamLeader']]), ['role' => 'buyer', 'executed_date' => '2017-06-01']);
         }
 
         $fields = factory(\App\Field::class, 5)

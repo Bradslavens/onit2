@@ -31,7 +31,8 @@ class TransactionFormSignersTest extends TestCase
 
 
         //// Add signers
-        $transactionForm->signers()->attach(factory(\App\Signer::class, 3)->create(['user_id' => 1]));
+        $transactionForm->signers()->attach(factory(\App\Signer::class, 3)->create(['user_id' => 1]), [
+            'executed_date' => '2017-06-01']);
 
         $tf = \App\TransactionForm::first();
 

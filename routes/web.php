@@ -48,3 +48,6 @@ Route::get('/transaction/dashboard/{id}', 'Transaction\DashboardController@show'
 
 Route::resource('field', 'FieldController');
 Route::get('fieldList', 'FieldController@getFields')->name('fieldList');
+
+// checklist
+Route::resource('transaction/checklist', 'Transaction\ChecklistController');
