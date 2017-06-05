@@ -113,6 +113,10 @@ class ChecklistController extends Controller
                 }
             }
         }
+
+        session()->flash('message', 'Checklist for ' . $transaction->name);
+
+        return view('show.checklist', ['checklistItems' => $checklist]);
     }
 
     /**
