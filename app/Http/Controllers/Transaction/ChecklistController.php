@@ -51,8 +51,6 @@ class ChecklistController extends Controller
      */
     public function show($id)
     {
-        // $is is transaction id
-        
         // generate a checklist
         // first get all the transaction forms
         // // then for each form get the status 
@@ -62,62 +60,59 @@ class ChecklistController extends Controller
         // verify user owns transaction
         if($transaction->user_id == Auth::user()->teamLeader)
         {
-            // test building arrays
-            // 
-            
-            // $a = ['brad' => ['name' => 'a'],['b'],['c']];
-
-            // foreach ($a as $key => $value) {
-                    
-            //         $d['d'] = [1,2,3];
-            //         $b[$value] = $d['d'];
-            //     }    
-
-            // dd($a);
-
-            // // end test
-            // // 
-            // die();
-
 
             // set the checklist array
             $checklist = [];
-
             // set form array counter
             // 
             // $f = 0;
-            foreach ($transaction->forms as $key => $form) 
+            foreach ($transaction->forms as $form) 
             {
                 // get all the signers for the form
-                $transactionForms = \App\transactionForm::where([['transaction_id' , $transaction->id], ['form_id', $form->id],])->get();
+                $transactionForm = \App\transactionForm::find($form->pivot->id);
 
-                // now iterate through each form signer an assign status
-                foreach ($transactionForms as $transactionForm) 
+                $tempStatusArray = [];
+
+                foreach ($transactionForm->signers as $signer) 
                 {
-                    foreach ($transactionForm->signers as $transactionFormSigner) 
-                    {
+                    $tempStatusArray[$signer->name][] = $signer->pivot->status;
+                    // [$signer->pivot->status, 'role'=> $signer->pivot->role, 'signer_id' => $signer->id, 'name' => $signer->name, 'form_id' => $form->id];
+                }
 
-                        $transactionFormSigner = collect($transactionFormSigner);
-                        //
-                        // assign the status, everytime some signs is adds a new recored to transaction form signers table so 
-                        // we need to group them and then check if they have a yes under status for any signature
-                        // if they do it means they signed the form so we assign it a value of yes
-                        // if not then we assign it a value of no
-                        // 
-                        if($transactionFormSigner['pivot']['status'] == 'yes')
+
+                $groups = $transactionForm->signers->groupBy('name')->toArray();
+
+                $merged = [];
+                // for each tempstatus array which is the signer id.. groups so for each signer
+                // check if the array contains "status => yes"
+                foreach ($tempStatusArray as $key => $trs) 
+                {
+                    // does $trs contain yes?
+                    if(collect($trs)->contains('yes'))
+                    {
+                        foreach ($groups as $group) 
                         {
-                            $checklist['TransactionForms'][$form->name]['signer'] = $transactionFormSigner;
+                            if($group[0]['name'] == $key)
+                            {
+                                $checklist[$form->name][] = ['status' => 'yes', 'role' => $group[0]['pivot']['role'], 'name' => $group[0]['name'], 'id' => $group[0]['id']];
+                            }
                         }
-                        else
+                        
+                    }
+                    else
+                    {
+                        foreach ($groups as $group) 
                         {
-                            dd('no');
+                            if($group[0]['name'] == $key)
+                            {
+                                $checklist[$form->name][] = ['status' => 'no', 'role' => $group[0]['pivot']['role'], 'name' => $group[0]['name'], 'id' => $group[0]['id']];
+                            }
                         }
-                    }                        
+                        
+                    }  
                 }
             }
         }
-
-        dd($checklist);
     }
 
     /**

@@ -23,10 +23,10 @@ class TransactionChecklistTest extends TestCase
 
         foreach ($transactionForms as $transactionForm) 
         {
-            for($i = 0; $i<3; $i++)
+            for($i = 0; $i<7; $i++)
             {
 
-                $transactionForm->signers()->save(factory(\App\Signer::class)->create(['transaction_id' => $transaction->id, 'user_id' => $user->id]), ['role' => 'buyer', 'executed_date' => '2017-06-02', 'status' => 'yes']);
+                $transactionForm->signers()->save(factory(\App\Signer::class)->create(['transaction_id' => $transaction->id, 'user_id' => $user->id]), ['signer_id'=> $i%4, 'role' => 'buyer', 'executed_date' => '2017-06-02', 'status' => 'yes']);
 
             }
         }
