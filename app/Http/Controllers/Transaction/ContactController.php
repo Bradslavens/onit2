@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Transaction;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class ChecklistItemController extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class ChecklistItemController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +36,20 @@ class ChecklistItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = \App\Transaction::find(session('transactionID'));
+
+        $contact = new \App\Contact;
+
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->user_id = Auth::user()->teamLeader;
+        $contact->role_a = $request->role;
+
+        $contact->save();
+
+        $transaction->contacts()->save($contact);
+
+        return redirect('home');
     }
 
     /**
@@ -81,5 +95,24 @@ class ChecklistItemController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function make($transactionID)
+    {
+        $transaction = \App\Transaction::find($transactionID);
+
+        // verify user owns the transaction
+        if($transaction->user_id === Auth::user()->teamLeader)
+        {
+            session('transactionID', $transaction->id);
+
+            return view('create.transaction.contact');
+        }
+        else
+        {
+            session()->flash('message', 'Oops, something went wrong, we can\'t find that transaction.');
+
+            return redirect('home');
+        }
     }
 }

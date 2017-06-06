@@ -11,7 +11,7 @@ class Signer extends Model
     //
     public function transactionForms()
     {
-        return $this->belongsToMany(TransactionForm::class)->withPivot(['status', 'executed_date']);
+        return $this->belongsToMany(TransactionForm::class)->withPivot(['status', 'executed_date', 'role']);
     }
 
     public function transaction()

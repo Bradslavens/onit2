@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <h1>Checklist</h1>
             
-            <form method="POST" action="{{route('checklist.store')}}">
+            <form method="POST" action="{{route('checklistItems.store')}}">
                 {{ csrf_field() }}
                 <table class="table">
                     @foreach($checklistItems as $formName => $checklistItem)

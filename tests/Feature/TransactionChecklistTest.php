@@ -31,7 +31,7 @@ class TransactionChecklistTest extends TestCase
             }
         }
 
-        $response = $this->actingAs($user)->get(route('checklist.show', ['id' => $transaction['id']]));
+        $response = $this->actingAs($user)->get(route('checklistItems.show', ['id' => $transaction['id']]));
 
         $response->assertSee('<h1>Checklist</h1>');
 

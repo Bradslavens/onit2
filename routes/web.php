@@ -50,4 +50,8 @@ Route::resource('field', 'FieldController');
 Route::get('fieldList', 'FieldController@getFields')->name('fieldList');
 
 // checklist
-Route::resource('transaction/checklist', 'Transaction\ChecklistController');
+Route::resource('transaction/checklistItems', 'Transaction\ChecklistItemsController');
+
+// contacts
+Route::resource('transaction/contact', 'Transaction\ContactController');
+Route::get('transaction/contact/{transactionID}/make', 'Transaction\ContactController@make')->name('transaction.contact.make');

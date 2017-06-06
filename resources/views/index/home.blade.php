@@ -30,7 +30,7 @@
                     <a href="{{route('transaction.dashboard', ['id' => $transaction->id])}}">
                         <span class="label label-info">Dashboard</span>
                     </a>
-                    <a href="{{route('checklist.show', ['id' => $transaction->id])}}">
+                    <a href="{{route('checklistItems.show', ['id' => $transaction->id])}}">
                         <span class="label label-primary">Checklist</span>
                     </a>
                     <a href="#{{-- {{route('transaction.contacts', ['id' => $transaction->id])}} --}}">

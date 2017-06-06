@@ -20,6 +20,10 @@ class TransactionDashboardTest extends TestCase
 
         $transaction->forms()->attach(factory(\App\Form::class, 5)->create(['user_id' => $user['teamLeader'] ]));
 
+        $contact = factory(\App\Contact::class)->create(['user_id' => $user['teamLeader']]);
+
+        $transaction->contacts()->attach($contact);
+
         // for each of the new transaction forms add signers
         // get forms
         // for each transaction forms set signers

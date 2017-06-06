@@ -31,12 +31,12 @@
                 <div class="col-md-6">
                     <div class="panel panel-primary">
                       <div class="panel-heading">
-                        <h3 class="panel-title">Signers / Contacts</h3>
+                        <h3 class="panel-title">Signers</h3>
                       </div>
                       <div class="panel-body">
                         <table class="table table-striped">
                             <th>
-                                strong
+                                Name
                             </th>
                             <th>
                                 Role
@@ -52,7 +52,37 @@
                     </div>
                 </div> {{-- col md 6 --}}
 
-                    <div class="col-md-6">
+                <div class="col-md-6">
+                    <div class="panel panel-warning">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Other Contacts</h3>
+                      </div>
+                      <div class="panel-body">
+                        <table class="table table-striped">
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Role
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            @foreach($transaction->contacts as $contact)
+                                <tr>
+                                    <td><strong>{{$contact->name}}</strong></td>
+                                    <td>{{$contact->role}}</td>
+                                    <td>{{$contact->email}}</td>
+                                </tr>
+                            @endforeach
+                        </table>
+
+                        <a href="{{route('transaction.contact.make')}}"></a>
+                      </div>
+                    </div>
+                </div> {{-- col md 6 --}}
+
+                <div class="col-md-6">
 
                     <div class="panel panel-primary">
                       <div class="panel-heading">
@@ -75,12 +105,13 @@
                         </table>
                       </div>
                     </div>
+
                 </div> {{-- col md 6 --}}
 
                 <div class="col-md-6">
                     <div class="panel panel-primary">
                       <div class="panel-heading">
-                        <h3 class="panel-title">Homew Warranty Info</h3>
+                        <h3 class="panel-title">Home Warranty Info</h3>
                       </div>
                       <div class="panel-body">
                         <table class="table table-striped">

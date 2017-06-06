@@ -6,12 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ChecklistController extends Controller
+class ChecklistItemsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -51,6 +47,7 @@ class ChecklistController extends Controller
      */
     public function show($id)
     {
+        
         // generate a checklist
         // first get all the transaction forms
         // // then for each form get the status 

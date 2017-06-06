@@ -86,6 +86,16 @@ $factory->define(App\TransactionFormField::class, function (Faker\Generator $fak
 });
 
 
+$factory->define(App\Contact::class, function (Faker\Generator $faker)
+{
+    return [
+    'name' => $faker->name,
+    'email' => $faker->email,
+    'role_a' => $faker->word,
+    ];
+});
+
+
 
 
 

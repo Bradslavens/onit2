@@ -17,6 +17,8 @@ class DashboardController extends Controller
     {
         $transaction = \App\Transaction::find($id);
 
+        session('transactionID', $id);
+
         if($transaction->user_id === Auth::user()->teamLeader)
         {
 
@@ -81,7 +83,7 @@ class DashboardController extends Controller
 
             }
             
-            return view('show.dashboard', ['transaction' => $transaction, 'signers' => $signer_array, 'fields' => $fields, 'dashFields' => $dashFields]);
+            return view('show.dashboard', ['transaction' => $transaction, 'signers' => $signer_array, 'fields' => $fields, 'dashFields' => $dashFields, ]);
         }
         else
         {
