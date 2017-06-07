@@ -5,6 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h1>Dashboard</h1>
+
+            @include('partials.message')
+            
             <h2>{{$transaction->name}}</h2>
             <div class="row">
                 <div class="col-md-6">
@@ -71,13 +74,13 @@
                             @foreach($transaction->contacts as $contact)
                                 <tr>
                                     <td><strong>{{$contact->name}}</strong></td>
-                                    <td>{{$contact->role}}</td>
+                                    <td>{{$contact->role_a}}</td>
                                     <td>{{$contact->email}}</td>
                                 </tr>
                             @endforeach
                         </table>
 
-                        <a href="{{route('transaction.contact.make')}}"></a>
+                        <a href="{{route('transaction.contact.make', ['transactionID' => $transaction->id])}}">Add Another Contact</a>
                       </div>
                     </div>
                 </div> {{-- col md 6 --}}

@@ -49,7 +49,9 @@ class ContactController extends Controller
 
         $transaction->contacts()->save($contact);
 
-        return redirect('home');
+        session()->flash('message', $contact->name . ' was successfully added to the Transaction :)');
+
+        return redirect(route('transaction.dashboard', ['id' => $transaction->id]));
     }
 
     /**
@@ -104,7 +106,8 @@ class ContactController extends Controller
         // verify user owns the transaction
         if($transaction->user_id === Auth::user()->teamLeader)
         {
-            session('transactionID', $transaction->id);
+
+            session(['transactionID' => $transaction->id]);
 
             return view('create.transaction.contact');
         }

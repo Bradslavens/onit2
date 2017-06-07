@@ -23,18 +23,18 @@
 
                 <div class="form-group">
                     <label for="role">Select Role</label>
-                    <select multiple name="role" id="role" class="form-control">
-                      <option value="buyers agent">Buyer's Agent</option>
-                      <option value="sellers agent">Seller's Agent</option>
-                      <option value="buyer">Buyer</option>
-                      <option value="seller">Seller</option>
-                      <option value="buyers tc">Buyer's TC</option>
-                      <option value="sellers tc">Seller's TC</option>
-                      <option value="escrow">Escrow</option>
+                    <select name="role" id="role" class="form-control">
+                      <option value="Buyer's Agent">Buyer's Agent</option>
+                      <option value="Seller's Agent">Seller's Agent</option>
+                      <option value="Buyer">Buyer</option>
+                      <option value="Seller">Seller</option>
+                      <option value="Buyer's TC">Buyer's TC</option>
+                      <option value="Seller's TC">Seller's TC</option>
+                      <option value="Escrow">Escrow</option>
                     </select>
                 <div>
-
-                <button type="submit" class="btn btn-default">Add Contact</button> 
+                <br>
+                <input type="submit" class="form-control" value="Add Contact">
 
             </form>
         </div>
