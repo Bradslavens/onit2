@@ -26,9 +26,29 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    
   </head>
 
   <body>
+
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <nav>
+                <ul id="menu">
+                    <li><a href="{{route('home')}}">Home</a></li>
+                    {{-- @if($user->role === 'admin') --}}
+                    <li><a class="link" href="{{route('admin.home')}}">Admin</a></li>
+                    {{-- @endif --}}
+                    <li><form method="POST" action="{{route('logout')}}">{{csrf_field()}}<input class="btn btn-link" type="submit" value="Logout"></form></li>
+                </ul>
+              </nav>
+          </div>
+      </div>
+  </div>
+
 
     @yield('content') <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
