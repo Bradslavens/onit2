@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
+
+    public function __construct()
+    {   
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        dd('hello');
     }
 
     /**
@@ -25,7 +31,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -117,5 +123,12 @@ class ContactController extends Controller
 
             return redirect('home');
         }
+    }
+
+    public function getCurrentContacts(Request $request)
+    {
+        $contacts = \App\Transaction::find($request->transactionID)->signers()->where('name', 'like', '%' . $request->name . '%' )->get();
+
+        return $contacts;
     }
 }

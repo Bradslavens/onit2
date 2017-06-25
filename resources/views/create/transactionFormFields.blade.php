@@ -46,7 +46,10 @@
                 <fieldset>
                     <legend id="signerLegend")>Form Signers</legend>
                     
-                    <a href="#" id="newSignerLink">Add a Signer</a>
+                    <div class="ui-widget">
+                      <label for="signers">Add A Signer: </label>
+                      <input id="signers">
+                    </div>
                     
                     @if(isset($signers))
                         @foreach($signers as $signer)
@@ -114,13 +117,13 @@ $(document).ready(function(){
         signerfield +=            "</div>";
     
 
-    // set the function for new signer link
-    $("#newSignerLink").click(function(){
+    // // set the function for new signer link
+    // $("#newSignerLink").click(function(){
         
-        event.preventDefault();
+    //     event.preventDefault();
 
-        $( "#signerLegend" ).after( signerfield );
-    });   
+    //     $( "#signerLegend" ).after( signerfield );
+    // });   
 
 
     var newField;
@@ -160,6 +163,8 @@ $(document).ready(function(){
 @section('script')
     
     @include('partials.jQAutocompleteScriptsFields')
+
+    @include('partials.jQAutocompleteScriptsSigners')
 
 @endsection
 
