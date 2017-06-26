@@ -31,11 +31,23 @@
     
   </head>
 
-  <body>
+  <body>  
 
   <div class="container">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
+            <nav class="navbar navbar-default">
+              <div class="container-fluid">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="nav-main" aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                  </button>
+                </div>
+              </div>
+            </nav>
               <nav>
                 <ul id="menu">
                     <li><a href="{{route('home')}}">Home</a></li>

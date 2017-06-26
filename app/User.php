@@ -41,4 +41,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Teammate::class);
     }
+
+    public function workTimes()
+    {
+        return $this->hasMany(WorkTime::class);
+    }
 }

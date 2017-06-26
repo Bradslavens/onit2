@@ -17,7 +17,14 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendInvitationToTeammate',
             'App\Listeners\SetFlashMessage',
         ],
-    ];
+        'App\Events\UserLoggedIn' => [
+            'App\Listeners\StartTimeClock',
+        ],
+        'App\Events\UserLoggedOut' => [
+            'App\Listeners\StopTimeClock',
+            'App\Listeners\MailTimeWorkedToBroker',
+        ],
+     ];
 
     /**
      * Register any events for your application.

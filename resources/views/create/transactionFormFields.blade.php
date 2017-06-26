@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-
+            <h1>{{$form->name}}</h1>
             @include('partials.message')
  
             
@@ -19,7 +19,7 @@
                 {{ csrf_field() }}
 
                 <input type="hidden" name="transactionID" value="{{$transactionID}}">
-                <input type="hidden" name="form" value="{{$form}}">
+                <input type="hidden" name="form" value="{{$form->id}}">
 
                 <div id="fieldExisting"></div>
                     
