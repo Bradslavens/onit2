@@ -34,7 +34,7 @@ $( function() {
           signer +=      "</label>";
         signer +=      "</div>";           
 
-      $("#signerContainer2").append(signer);
+      $("#signerContainer2").prepend(signer);
     }
  
     $( "#signers" ).autocomplete({

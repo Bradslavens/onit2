@@ -50,7 +50,7 @@
                       <label for="signers">Add A Signer: </label>
                       <input id="signers">
                     </div>
-                    <button id="newSigner">Add</button>
+
                     <br>
                     <div id="signerContainer2">
                         
@@ -156,7 +156,7 @@ $(document).ready(function(){
 
         event.preventDefault();
 
-        $("#fieldContainer").append( newField );
+        $("#fieldContainer").prepend( newField );
 
     })
 });

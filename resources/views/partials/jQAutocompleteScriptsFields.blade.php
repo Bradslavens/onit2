@@ -20,7 +20,7 @@ $( function() {
         field +=        "<input class='form-control' type='text' name='field[]' placeholder='$123,000'>";
         field +=    "</div>";
 
-      $("#fieldContainer").append(field);
+      $("#fieldContainer").prepend(field);
     }
  
     $( "#fieldSearch" ).autocomplete({
