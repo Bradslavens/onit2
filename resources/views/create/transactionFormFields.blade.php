@@ -50,7 +50,12 @@
                       <label for="signers">Add A Signer: </label>
                       <input id="signers">
                     </div>
-                    
+                    <button id="newSigner">Add</button>
+                    <br>
+                    <div id="signerContainer2">
+                        
+                    </div>
+
                     @if(isset($signers))
                         @foreach($signers as $signer)
 

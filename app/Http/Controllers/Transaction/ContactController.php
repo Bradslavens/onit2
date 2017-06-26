@@ -21,7 +21,6 @@ class ContactController extends Controller
      */
     public function index()
     {
-        dd('hello');
     }
 
     /**
@@ -127,7 +126,12 @@ class ContactController extends Controller
 
     public function getCurrentContacts(Request $request)
     {
-        $contacts = \App\Transaction::find($request->transactionID)->signers()->where('name', 'like', '%' . $request->name . '%' )->get();
+
+        $contacts = \App\Signer::where('name', 'like', '%' . $request->term . '%' )->get(['id', 'name as value']);
+        if($contacts->count() == 0)
+        {
+            $contacts = json_encode(['value' => 'Add New Signer', 'id' => 0]);
+        }
 
         return $contacts;
     }

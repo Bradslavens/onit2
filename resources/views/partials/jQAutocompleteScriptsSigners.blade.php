@@ -7,26 +7,40 @@ var base_url = window.location.origin;
 $( function() {
     function log( message ) {
       // set variable for new form field
-    var field;
+    var signer;
 
-        field =     "<h3>Field</h3>";
-        field +=    "<div class='form-group ui-widget'>";
-        field +=        "<label for='field'>Field Name</label>";
-        field +=        "<input id='field' class='form-control' type='text' name='field[]' placeholder='Purchase Price' value='" + message + "'>";
-        field +=    "</div>";
+        signer =     "<h3>Signer</h3>";
+        signer +=    "<div class='form-group ui-widget'>";
+        signer +=        "<label for='signer'>Signer Name</label>";
+        signer +=        "<input id='signer' class='form-control' type='text' name='signer[]' placeholder='Add Signer\'s name' value='" + message + "'>";
+        signer +=    "</div>";
 
-        field +=    "<div class='form-group'>";
-        field +=        "<label for='field3'>What is the Value</label>";
-        field +=        "<input class='form-control' type='text' name='field[]' placeholder='$123,000'>";
-        field +=    "</div>";
+        signer +=    "<div class='form-group'>";
+        signer +=        "<label for='signer3'>What is there role?</label>";
+        signer +=        "<input class='form-control' type='text' name='signer[]' placeholder='Buyer'>";
+        signer +=    "</div>";
 
-      $("#fieldContainer").append(field);
+        signer +=    "<div class='checkbox'>";
+          signer +=      "<label>";
+            signer +=      "<input type='checkbox' name='signer[]' value='yes'>"; 
+              signer +=     "signed";
+          signer +=      "</label>";
+        signer +=      "</div>";
+
+        signer +=      "<div class='checkbox'>";
+          signer +=      "<label>";
+            signer +=      "<input type='checkbox' name='signer[]' value='no'>"; 
+            signer +=      "not signed";
+          signer +=      "</label>";
+        signer +=      "</div>";           
+
+      $("#signerContainer2").append(signer);
     }
  
     $( "#signers" ).autocomplete({
       source: function( request, response ) {
         $.ajax( {
-          url: base_url + "/fieldList",
+          url: base_url + "/currentContacts",
           dataType: "json",
           data: {
             term: request.term
@@ -42,4 +56,5 @@ $( function() {
       }
     } );
   } );
+
 </script>

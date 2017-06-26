@@ -56,4 +56,4 @@ Route::resource('transaction/checklistItems', 'Transaction\ChecklistItemsControl
 Route::resource('transaction/contact', 'Transaction\ContactController');
 Route::get('transaction/contact/{transactionID}/make', 'Transaction\ContactController@make')->name('transaction.contact.make');
 
-Route::get('hello', 'Transaction\ContactController@getCurrentContacts');
+Route::get('currentContacts', 'Transaction\ContactController@getCurrentContacts')->name('currentContacts');

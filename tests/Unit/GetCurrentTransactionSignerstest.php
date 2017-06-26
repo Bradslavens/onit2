@@ -31,7 +31,7 @@ class GetCurrentTransactionSignerstest extends TestCase
         // $response = $this->actingAs($user)
         //     ->get(route('transaction.contact.getCurrent'), ['name' => $signer->name, 'transactionID' => $transaction->id]);
 
-        $response = $this->ActingAs($user)->json('GET','hello', ['name' => $signer->name, 'transactionID' => $transaction->id]);
+        $response = $this->ActingAs($user)->json('GET',route('currentContacts'), ['name' => $signer->name, 'transactionID' => $transaction->id]);
         // 
         // 
         
