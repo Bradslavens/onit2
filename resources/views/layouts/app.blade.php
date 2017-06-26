@@ -36,30 +36,44 @@
   <div class="container">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-inverse">
               <div class="container-fluid">
                 <div class="navbar-header">
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="nav-main" aria-expanded="false">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-main" aria-expanded="false">
                       <span class="sr-only">Toggle navigation</span>
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span>
                   </button>
+                  <a class="navbar-brand" href="#">Onit Transactions</a>
                 </div>
-              </div>
-            </nav>
-              <nav>
-                <ul id="menu">
-                    <li><a href="{{route('home')}}">Home</a></li>
-                    {{-- @if($user->role === 'admin') --}}
+                {{-- nab bar header --}}
+
+                <div class="collapse navbar-collapse" id="nav-main">
+                  <ul class="nav navbar-nav">
+
+                    <li class="active"><a href="{{route('home')}}">Home</a></li>
                     <li><a class="link" href="{{route('admin.home')}}">Admin</a></li>
-                    {{-- @endif --}}
-                    <li><form method="POST" action="{{route('logout')}}">{{csrf_field()}}<input class="btn btn-link" type="submit" value="Logout"></form></li>
-                </ul>
-              </nav>
+                    
+                  </ul>
+                  {{-- nav navbar-nab --}}
+
+                  <form class="navbar-form navbar-left" method="POST" action="{{route('logout')}}">{{csrf_field()}}<button class="btn btn-default" type="submit" value="Logout">Logout</button></form>
+                
+                </div>
+                {{-- navbar collapse --}}
+
+              </div>
+              {{-- container fluid --}}
+            </nav>
+            {{-- nav bar --}}
+
           </div>
+          {{-- col-md-8 col-md-offset-2 --}}
       </div>
+      {{-- row --}}
   </div>
+  {{-- container --}}
 
 
     @yield('content') <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
