@@ -1,1 +1,14 @@
 @import url("menu.css");
+
+#toolTipContainer {
+    background-color: #fff;
+    border: dashed blue 3px;
+    padding: 5px;
+    margin-top: 5px;
+    display: flex;
+}
+
+p {
+    padding: 10px;
+    text-align: center;
+}
