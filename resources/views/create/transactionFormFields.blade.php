@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h1>{{$form->name}}</h1>
+            <h3>{{$form->name}}</h3>
             @include('partials.message')
  
             
@@ -42,13 +42,14 @@
                     <input  name="{{$field->id}}" type="{{$field->type}}" class="form-control" id="{{$field->id}}" placeholder="{{$field->name}}">
                   </div>
                 @endforeach
-
-                <fieldset>
-                    <legend id="signerLegend")>Form Signers</legend>
+{{-- 
+                <fieldset> --}}
+                    {{-- <legend id="signerLegend")>Form Signers</legend> --}}
+                    <h4>Form Signers:</h4>
                     
-                    <div class="ui-widget">
+                    <div class="form-group ui-widget">
                       <label for="signers">Add A Signer: </label>
-                      <input id="signers">
+                      <input class="form-control" id="signers">
                     </div>
 
                     <br>
@@ -79,9 +80,8 @@
 
                         @endforeach
 
-                        </div>
                     @endif
-                </fieldset>
+                {{-- </fieldset> --}}
                 
                 <div class="form-group">
                     <label for="executed_date">Date Signed:</label>
@@ -91,8 +91,11 @@
                 <button type="submit" class="btn btn-default ">Submit</button>
             </form>
         </div>
+        {{-- col md 8  --}}
     </div>
+    {{-- row --}}
 </div>
+{{-- container --}}
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
