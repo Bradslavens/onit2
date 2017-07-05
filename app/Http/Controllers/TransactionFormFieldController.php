@@ -35,15 +35,13 @@ class TransactionFormFieldController extends Controller
      */
     public function create(Request $request)
     {
-
         $Form = \App\Form::where('name', $request->form)->first();
 
         $transaction = json_decode($request->transaction);
 
-
         if($transaction->user_id === Auth::user()->teamLeader)
         {
-            return view('create.transactionFormFields', ['fields' => $Form->fields, 'transactionID' => $transaction->id, 'form' => $Form->id]);
+            return view('create.transactionFormFields', ['fields' => $Form->fields, 'transactionID' => $transaction->id, 'form' => $Form]);
         }
         else
         {

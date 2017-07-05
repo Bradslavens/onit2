@@ -10,10 +10,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h3>{{$form->name}}</h3>
+            {{-- <h3>{{$form->name}}</h3> --}}
             @include('partials.message')
- 
-            
+
             <h1>Input Form Information</h1>
             <form method="post" action="{{route('transactionFormFieldstore')}}">
                 {{ csrf_field() }}

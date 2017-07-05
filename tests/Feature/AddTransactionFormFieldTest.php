@@ -7,6 +7,9 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
+use App\Form;
+use App\Field;
+
 class AddTransactionFormFieldTest extends TestCase
 {
     use DatabaseMigrations;
@@ -31,9 +34,11 @@ class AddTransactionFormFieldTest extends TestCase
 
        $form = \App\Form::find($transaction->forms()->first());
 
-       $field = \App\Field::find($form->fields()->first());
+       $form = Form::find($form[0]['id']);
 
-       $response = $this->actingAs($user)->post(route('transactionFormFieldstore'), ['transactionID' => $transaction['id'], 'form' => $form['id'], $field['id'] => $field['form_id'], 'value' => "123 Main", 'executed_date' => time(), 'signer' => ['name', 'role', true]]);
+       $field = \App\Field::find($form->fields()->first()->id);
+
+       $response = $this->actingAs($user)->post(route('transactionFormFieldstore'), ['transactionID' => $transaction['id'], 'form' => $form->id , $field['id'] => $field['form_id'], 'value' => "123 Main", 'executed_date' => time(), 'signer' => ['name', 'role', true]]);
 
        $response->assertSee('Redirecting to')
             ->assertRedirect(route('home'));

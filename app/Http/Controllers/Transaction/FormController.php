@@ -129,7 +129,7 @@ class FormController extends Controller
 
                 session()->flash('message', 'Transaction: '. $transaction->address1);
 
-                return view('create.transactionFormFields', ['fields' => $form->fields, 'transactionID' => $transaction->id, 'form' => $form->id]);
+                return view('create.transactionFormFields', ['fields' => $form->fields, 'transactionID' => $transaction->id, 'form' => $form]);
             }
             else
             {
