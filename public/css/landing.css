@@ -1,0 +1,129 @@
+* {
+    quotes: "“" "”" "‘" "’";
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    color: #2480fe;
+    padding: 5px;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+button {
+    border: none;
+    background: transparent;
+}
+
+nav img {
+    height: 30px;
+    display: block;
+}
+
+i.fa.fa-bars {
+    color: #2480fe;
+    font-size: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #2480fe;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+#jumbo-form {
+    height: 250px;
+    padding-top: 20px;
+    height: initial;
+}
+
+#jumbo-form img {
+    height: 250px;
+}
+
+#jumbo-form blockquote {
+    quotes: "“" "”" "‘" "’";
+    text-align: center;
+}
+
+#jumbo-form blockquote:before {
+    content: open-quote;
+}
+
+#jumbo-form blockquote:after {
+    content: close-quote;
+}
+
+form input, form button {
+    display: block;
+    margin: 10px auto;
+    border: none;
+    background: #2480fe;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: hotpink;
+}
+
+form input {
+    background: white;
+    border: solid lightblue;
+}
+
+form input::-webkit-input-placeholder {
+    color: lightgray;
+}
+
+form input:-ms-input-placeholder {
+    color: lightgray;
+}
+
+form input::placeholder {
+    color: lightgray;
+}
+
+
+/*#jumbo-form {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    -ms-grid-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "deb quote"
+        "form blank"
+        ;
+}
+
+#jumbo-form img {
+    height: 250px;
+    grid-area: deb;
+}
+
+#jumbo-form blockquote {
+    grid-area: deb;
+}
+
+#jumbo-form form {
+    grid-area: form;
+}*/

@@ -2,20 +2,39 @@
 <html>
 <head>
     <title>Welcome to Onit Transactions: Don't Worry We're ONIT!</title>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet"> {{-- font-family: 'Raleway', sans-serif --}}
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/landing.css">
+
+    <script src="https://use.fontawesome.com/0c8602578f.js"></script>
+
+
 </head>
 <body>
-   <div class="jumbo-form">
-      <div id="jumbo">
-        <img src="/images/dress1.jpg">
-        <blockquote>Don't Worry, We're ON IT!</blockquote>
-<!--          <span class="logo-pipe">|</span>-->
-      </div>
+    <nav>
+      <button>
+          <i class="fa fa-bars" aria-hidden="true"></i>
+      </button>
+      <a href="#"><img src="/images/onit.gif"></a>
+<!--        <span class="logo-pipe">|</span>-->
+      <a href="#">Log In</a>
+    </nav><!--    nav-->
 
-      <form>
-            <input type="text" name="name" id="name" placeholder="Name">
-            <input type="email" id="email" placeholder="Email">
-            <button type="submit">Register -It's Free!</button>
-      </form>  
+   <div id="jumbo-form">
+        <blockquote>Don't Worry, We're ON IT!</blockquote>
+        <img src="/images/DEB9BANNER.jpg">
+
+          <form>
+                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="email" id="email" placeholder="Email">
+                <button type="submit">Register -It's Free!</button>
+          </form>  
   
   </div>
 <!--        jumbo form-->
@@ -64,5 +83,8 @@
       <h2>No Drama</h2>
       <p>We know transaction coordinators make contact with nearly every party in the transaction. We also know that an out of control or simply a rude TC can jeoprodize a transaction.  We practice profession etiquet, courtesy and respect for everyone involved to keep the transaction running smooth and on course.</p>  
   </div>
+  <footer>
+      Hello
+  </footer>
 </body>
 </html>
