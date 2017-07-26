@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+Route::get('landing', function() {
+    return view('welcome');
+});
+
 Auth::routes();
 
 //transaction
