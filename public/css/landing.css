@@ -173,11 +173,14 @@ footer {
 
 @media only screen and (min-width: 768px)
 {
-    /*put the details section in grid*/
-    #details-grid {
-        display: -ms-grid;
-        display: grid;
-        -ms-grid-columns: (1fr)[3];
-        grid-template-columns: repeat(3, 1fr);
+    @supports ((display: -ms-grid) or (display: grid))
+    {
+        /*put the details section in grid*/
+        #details-grid {
+            display: -ms-grid;
+            display: grid;
+            -ms-grid-columns: (1fr)[3];
+            grid-template-columns: repeat(3, 1fr);
+        }
     }
 }
