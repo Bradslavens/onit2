@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to Onit Transactions: Don't Worry We're ONIT!</title>
+    <title>Welcome to Onit Transactions: Don't Worry We're ONIT! - $425 / Transaction</title>
 
 
     <meta charset="utf-8">
@@ -31,7 +31,7 @@
     </nav><!--    nav-->
 
    <div id="jumbo-form">
-        <blockquote>Don't Worry, We're on it...</blockquote>
+        <blockquote>Don't Worry, We're on it... </blockquote>
         <img src="/images/deb10paper.png">
 
           <form>
@@ -54,38 +54,41 @@
         <li>We can send documents via, Docusign, Fax, email or first class mail, to your client.</li>
       </ul>
   </div>
-  <div class="det-container">
-      <img class="large-icon" src="/images/mls-blue.gif">
-      <h2>MLS Access</h2>
-      <p>We are members of Sandicor and associated recipricol MLS's, meaning we have access to all the data needed to get your transaction up and running with less input from you, leaving you time to earn more money!</p>
-  </div>
-  <div class="det-container">
-      <img class="large-icon" src="/images/zip-blue.gif">
-      <h2>Zip Forms</h2>
-      <p>We have our own Zipforms account. So you don't have ot worry about outdated or 3rd party forms and disclosures.</p>
-  </div>
-  <div class="det-container">
-      <img class="large-icon" src="/images/fa-blue.gif">
-      <h2>Forms Advisor</h2>
-      <p>Real Estate law, forms and processes are constantly changing. We use Zipforms, FormsAdvisor on every transaction in addition to your checklist to give you the best coverage possible.</p>
-  </div>
-  <div class="det-container">
-      <img class="large-icon" src="/images/exp-blue.gif">
-      <h2>Experience</h2>
-      <p>We've been closing transactions since 2004.</p>
-  </div>
-  <div class="det-container">
-      <img class="large-icon" src="/images/automation-blue.gif">
-      <h2>Automated status updates and reminders</h2>
-      <p>Most brokers require a complete file before cutting you a check. Our exclusive in house transaction software application will send you regular form status updates accurate down to the individual signer(s), so you know exactly where your at on every transaction and can worry less about getting paid.</p>
-      <img class="large-icon" src="/images/bre-blue.gif">
-      <h2>CA-BRE Licensed</h2>
-      <p>We are a CA-BRE Licensed Corporation CA-BRE License # 01522202</p>
-  </div>
-  <div class="det-container">
-      <img class="large-icon" src="/images/nd-blue.gif">
-      <h2>No Drama</h2>
-      <p>We know transaction coordinators make contact with nearly every party in the transaction. We also know that an out of control or simply a rude TC can jeoprodize a transaction.  We practice profession etiquet, courtesy and respect for everyone involved to keep the transaction running smooth and on course.</p>  
+  <div id="details-grid">
+    <div class="det-container">
+        <img class="large-icon" src="/images/mls-blue.gif">
+        <h2>MLS Access</h2>
+        <p>We are members of Sandicor and associated recipricol MLS's, meaning we have access to all the data needed to get your transaction up and running with less input from you, leaving you time to earn more money!</p>
+    </div>
+    <div class="det-container">
+        <img class="large-icon" src="/images/zip-blue.gif">
+        <h2>Zip Forms</h2>
+        <p>We have our own Zipforms account. So you don't have ot worry about outdated or 3rd party forms and disclosures.</p>
+    </div>
+    <div class="det-container">
+        <img class="large-icon" src="/images/fa-blue.gif">
+        <h2>Forms Advisor</h2>
+        <p>Real Estate law, forms and processes are constantly changing. We use Zipforms, FormsAdvisor on every transaction in addition to your checklist to give you the best coverage possible.</p>
+    </div>
+    <div class="det-container">
+        <img class="large-icon" src="/images/exp-blue.gif">
+        <h2>Experience</h2>
+        <p>We've been closing transactions since 2004.</p>
+    </div>
+    <div class="det-container">
+        <img class="large-icon" src="/images/automation-blue.gif">
+        <h2>Automated status updates and reminders</h2>
+        <p>Most brokers require a complete file before cutting you a check. Our exclusive in house transaction software application will send you regular form status updates accurate down to the individual signer(s), so you know exactly where your at on every transaction and can worry less about getting paid.</p>
+        <img class="large-icon" src="/images/bre-blue.gif">
+        <h2>CA-BRE Licensed</h2>
+        <p>We are a CA-BRE Licensed Corporation CA-BRE License # 01522202</p>
+    </div>
+    <div class="det-container">
+        <img class="large-icon" src="/images/nd-blue.gif">
+        <h2>No Drama</h2>
+        <p>We know transaction coordinators make contact with nearly every party in the transaction. We also know that an out of control or simply a rude TC can jeoprodize a transaction.  We practice profession etiquet, courtesy and respect for everyone involved to keep the transaction running smooth and on course.</p>  
+    </div>
+    
   </div>
   <footer>
       On-it Transactions, a Slavens, Inc. Company, CA-BRE License # 01522202, 3399 Ruffin Rd. #M2, San Diego, CA 92123, &copy; Slavens, Inc., website by Slavens, Inc.
