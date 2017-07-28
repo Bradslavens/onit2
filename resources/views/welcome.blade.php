@@ -88,7 +88,7 @@
       <p>We know transaction coordinators make contact with nearly every party in the transaction. We also know that an out of control or simply a rude TC can jeoprodize a transaction.  We practice profession etiquet, courtesy and respect for everyone involved to keep the transaction running smooth and on course.</p>  
   </div>
   <footer>
-      Hello
+      On-it Transactions, a Slavens, Inc. Company, CA-BRE License # 01522202, 3399 Ruffin Rd. #M2, San Diego, CA 92123, &copy; Slavens, Inc., website by Slavens, Inc.
   </footer>
 </body>
 </html>

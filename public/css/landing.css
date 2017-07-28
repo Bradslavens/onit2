@@ -133,6 +133,13 @@ h2 {
     padding-left: 0;
 }
 
+footer {
+    padding: 20px;    
+    background: lightgray;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+    margin-top: 20px;
+}
 
 @media only screen and (min-width: 600px)
 {
