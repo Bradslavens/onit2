@@ -67,7 +67,7 @@ class TeammateController extends Controller
 
         $teammate2 = \App\User::findOrFail($teammate->id);
 
-        event(new TeammateInvited($teammate2));
+        event(new TeammateInvited($teammate2, $tempPass));
 
         return redirect(route('teammate.index')); 
     }

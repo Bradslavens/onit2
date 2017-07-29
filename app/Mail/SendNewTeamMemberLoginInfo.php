@@ -13,15 +13,17 @@ class SendNewTeamMemberLoginInfo extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
-
+    public $tempPass;
+    
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $tempPass)
     {
         $this->user = $user;
+        $this->tempPass = $tempPass;
     }
 
     /**

@@ -29,6 +29,6 @@ class SendInvitationToTeammate
     public function handle(TeammateInvited $event)
     {
         Mail::to($event->user->email)
-            ->send(new SendNewTeamMemberLoginInfo($event->user));
+            ->send(new SendNewTeamMemberLoginInfo($event->user, $event->tempPass));
     }
 }

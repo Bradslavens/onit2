@@ -16,14 +16,18 @@ class TeammateInvited
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $user;
+    public $tempPass;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user, $tempPass)
     {
         $this->user = $user;
+        $this->tempPass = $tempPass;
     }
 
     /**
